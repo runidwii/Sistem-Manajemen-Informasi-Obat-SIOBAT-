@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Penerimaan extends Model
+{
+    {
+    protected $fillable = [
+        'permintaan_id',
+        'jumlah_diterima',
+        'tanggal_penerimaan',
+        'keterangan'
+    ];
+
+    public function permintaan()
+    {
+        return $this->belongsTo(Permintaan::class);
+    }
+}
+}
