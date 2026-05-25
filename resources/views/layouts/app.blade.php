@@ -68,7 +68,7 @@
         <nav class="topbar">
 
             <div class="left">
-                <h2>Beranda</h2>
+                <h2>{{ $pageTitle }}</h2>
             </div>
 
             <div class="right">

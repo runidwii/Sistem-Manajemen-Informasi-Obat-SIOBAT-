@@ -62,6 +62,6 @@ class DashboardController extends Controller
             'obatKeluar',
             'grafikObat',
             'permintaanTerbaru'
-        ));
+        ))->with('pageTitle', 'Dashboard');
     }
 }
