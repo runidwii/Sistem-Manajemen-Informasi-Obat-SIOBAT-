@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_permintaan');
             $table->enum('peruntukan_bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
             $table->text('keterangan')->nullable();
-            $table->enum('status_permintaan', ['Dikirim', 'Diterima', 'Diproses', 'Disetujui']);
+            $table->enum('status_permintaan', ['Dikirim', 'Diterima', 'Diproses']);
             $table->timestamps();
         });
     }
