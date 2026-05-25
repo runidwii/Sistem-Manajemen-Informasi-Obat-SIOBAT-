@@ -10,16 +10,16 @@ class ObatSampahController extends Controller
 {
     public function index()
     {
-        $obatSampah = ObatSampah::with('obat')->get();
+        $obatSampah = Obatsampah::with('obat')->get();
 
-        return view('obat-sampah.index', compact('obatSampah'));
+        return view('obatsampah.index', compact('obatSampah'));
     }
 
     public function create()
     {
         $obat = Obat::all();
 
-        return view('obat-sampah.create', compact('obat'));
+        return view('obatsampah.create', compact('obat'));
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class ObatSampahController extends Controller
             'jenis' => 'required'
         ]);
 
-        ObatSampah::create([
+        Obatsampah::create([
             'obat_id' => $request->obat_id,
             'jumlah_sampah' => $request->jumlah_sampah,
             'tanggal_dibuang' => $request->tanggal_dibuang,
@@ -41,7 +41,7 @@ class ObatSampahController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/obat-sampah')
+        return redirect('/Obatsampah')
             ->with('success', 'Data obat sampah berhasil ditambahkan');
     }
 
@@ -51,7 +51,7 @@ class ObatSampahController extends Controller
 
         $obat = Obat::all();
 
-        return view('obat-sampah.edit', compact('obatSampah', 'obat'));
+        return view('obatsampah.edit', compact('obatSampah', 'obat'));
     }
 
     public function update(Request $request, $id)
@@ -75,7 +75,7 @@ class ObatSampahController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/obat-sampah')
+        return redirect('/obatsampah')
             ->with('success', 'Data obat sampah berhasil diupdate');
     }
 
@@ -85,7 +85,7 @@ class ObatSampahController extends Controller
 
         $obatSampah->delete();
 
-        return redirect('/obat-sampah')
+        return redirect('/obatsampah')
             ->with('success', 'Data obat sampah berhasil dihapus');
     }
 }
