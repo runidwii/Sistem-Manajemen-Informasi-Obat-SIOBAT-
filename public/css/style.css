@@ -129,7 +129,7 @@
             color: white;
         }
 
-        .side-menu li a.active{
+        .side-menu li.active a{
             background: var(--green);
             color: white;
             box-shadow: 0 3px 10px rgba(79,209,197,0.5);

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('permintaan_id')->constrained('permintaans')->onDelete('cascade');
             $table->integer('jumlah_diterima');
             $table->date('tanggal_penerimaan');
+            $table->date('tanggal_kadaluarsa');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

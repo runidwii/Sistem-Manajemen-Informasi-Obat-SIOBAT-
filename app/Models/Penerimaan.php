@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penerimaan extends Model
 {
-    {
     protected $fillable = [
         'permintaan_id',
         'jumlah_diterima',
         'tanggal_penerimaan',
+        'tanggal_kadaluarsa',
         'keterangan'
     ];
 
@@ -18,5 +18,4 @@ class Penerimaan extends Model
     {
         return $this->belongsTo(Permintaan::class);
     }
-}
 }

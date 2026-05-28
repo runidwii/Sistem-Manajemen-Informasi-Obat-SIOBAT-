@@ -12,14 +12,14 @@ class ObatSampahController extends Controller
     {
         $obatSampah = ObatSampah::with('obat')->get();
 
-        return view('obat-sampah.index', compact('obatSampah'));
+        return view('obatsampah.index', compact('obatSampah'));
     }
 
     public function create()
     {
         $obat = Obat::all();
 
-        return view('obat-sampah.create', compact('obat'));
+        return view('obatsampah.create', compact('obat'));
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class ObatSampahController extends Controller
 
         $obat = Obat::all();
 
-        return view('obat-sampah.edit', compact('obatSampah', 'obat'));
+        return view('obatsampah.edit', compact('obatSampah', 'obat'));
     }
 
     public function update(Request $request, $id)

@@ -10,9 +10,7 @@ class RelokasiController extends Controller
 {
     public function index()
     {
-        $relokasi = Relokasi::with('obat')->get();
-
-        return view('relokasi.index', compact('relokasi'));
+        return redirect()->route('input.index');
     }
 
     public function create()
@@ -43,8 +41,8 @@ class RelokasiController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/relokasi')
-            ->with('success', 'Data relokasi berhasil ditambahkan');
+        return redirect()->route('input.index')
+    ->with('success', 'Data relokasi berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -79,9 +77,9 @@ class RelokasiController extends Controller
             'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/relokasi')
+        return redirect()->route('input.index')
             ->with('success', 'Data relokasi berhasil diupdate');
-    }
+        }
 
     public function destroy($id)
     {
@@ -89,7 +87,7 @@ class RelokasiController extends Controller
 
         $relokasi->delete();
 
-        return redirect('/relokasi')
+        return redirect()->route('input.index')
             ->with('success', 'Data relokasi berhasil dihapus');
     }
 }
