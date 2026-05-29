@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Data Obat')
 @section('content')
 
 <div class="page-header">

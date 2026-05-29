@@ -94,3 +94,92 @@
 .btn-batal:hover{
     background: #e41313;
 }
+
+/* CARD */
+.detail-card{
+    background: white;
+    border-radius: 24px;
+
+    padding: 30px;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.detail-header{
+    margin-bottom: 30px;
+}
+
+/* TITLE */
+.detail-header h2{
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* BODY */
+.detail-body{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* ITEM */
+.detail-item{
+    background: #f8fafc;
+    border-radius: 16px;
+
+    padding: 18px;
+}
+
+/* LABEL */
+.detail-item label{
+    display: block;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #64748b;
+
+    margin-bottom: 8px;
+}
+
+/* VALUE */
+.detail-item p{
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    color: #0f172a;
+}
+
+/* ACTION */
+.detail-action{
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* BUTTON */
+.btn-kembali{
+    padding: 12px 22px;
+
+    border-radius: 12px;
+
+    background: var(--green);
+    color: white;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+.btn-kembali:hover{
+    opacity: 0.9;
+    transform: translateY(-2px);
+}

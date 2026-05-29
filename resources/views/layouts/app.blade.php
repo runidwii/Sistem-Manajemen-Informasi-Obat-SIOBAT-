@@ -27,7 +27,7 @@
 
             <div class="brand-text">
                 <h2>SiOBAT</h2>
-                <p>Sistem Informasi Manajemen Obatt</p>
+                <p>Sistem Informasi Manajemen Obat</p>
             </div>
         </a>
 
@@ -79,32 +79,14 @@
         <nav class="topbar">
 
             <div class="left">
-                <h2>input</h2>
+                <h2>@yield('title')</h2>
             </div>
 
             <div class="right">
 
-                <form action="#">
-                    <div class="search-container">
-
-                        <span class="material-icons-round search-icon">
-                            search
-                        </span>
-
-                        <input type="text" placeholder="Ketik nama obat disini...">
-
-                    </div>
-                </form>
-
-                <a href="#" class="nav-link">
-
-                    <i class="material-icons-round">
-                        notifications
-                    </i>
-
-                    <span class="badge">5</span>
-
-                </a>
+                <span class="material-icons-round notif-icon {{ ($notif ?? 0) > 0 ? 'active' : '' }}">
+                    notifications_active
+                </span>
 
                 <span class="divider"></span>
 
@@ -113,11 +95,11 @@
 
                     <div class="profile-info">
 
-                        <img src="{{ asset('img/fotoprofil.jpg') }}" alt="User">
+                        <img src="{{ asset('img/profil.png') }}" alt="User">
 
                         <div class="user-text">
-                            <h4>Runi</h4>
-                            <p>Apoteker</p>
+                            <h4>{{ Auth::user()->nama_pengguna }}</h4>
+                            <p>{{ Auth::user()->role }}</p>
                         </div>
 
                     </div>
@@ -127,14 +109,14 @@
                         <li>
                             <a href="#">
                                 <i class="material-icons-round">person</i>
-                                Profile
+                                Akun
                             </a>
                         </li>
 
                         <li>
                             <a href="#">
                                 <i class="material-icons-round">settings</i>
-                                Settings
+                                Pengaturan
                             </a>
                         </li>
 
@@ -144,7 +126,7 @@
 
                                 <button type="submit" class="logout-btn">
                                     <i class="material-icons-round">logout</i>
-                                    Logout
+                                    Keluar
                                 </button>
                             </form>
                         </li>

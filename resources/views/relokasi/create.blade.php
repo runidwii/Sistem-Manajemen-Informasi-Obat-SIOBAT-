@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Input Data')
 @section('content')
 
 <div class="form-card">
