@@ -155,7 +155,7 @@
 
         <td>{{ $item['tanggal'] }}</td>
 
-        <td>{{ $item['keterangan'] }}</td>
+        <td>{{ $item['pemasok'] }}</td>
 
         <td>
 

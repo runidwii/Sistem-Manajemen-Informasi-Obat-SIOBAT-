@@ -7,6 +7,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -17,10 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/obat.css') }}">
 </head>
 <body class="bg-gray-100">
-
 <div class="flex">
-
-    <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
             <img src="{{ asset('img/logo.png') }}" alt="Logo">
@@ -30,11 +28,9 @@
                 <p>Sistem Informasi Manajemen Obat</p>
             </div>
         </a>
-
+        
         <div class="divider-side"></div>
-
         <ul class="side-menu">
-
             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}">
                     <i class="material-icons-round">home</i>
@@ -49,7 +45,7 @@
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('persediaan') ? 'active' : '' }}">
+            <li class="{{ request()->routeIs('persediaan.index') ? 'active' : '' }}">
                 <a href="{{ route('persediaan.index') }}">
                     <i class="material-icons-round">bar_chart</i>
                     Persediaan Obat
@@ -69,7 +65,6 @@
                     Laporan
                 </a>
             </li>
-
         </ul>
     </section>
 
