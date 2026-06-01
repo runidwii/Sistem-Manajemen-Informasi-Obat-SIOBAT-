@@ -50,7 +50,7 @@
             </li>
 
             <li class="{{ request()->routeIs('persediaan') ? 'active' : '' }}">
-                <a href="#">
+                <a href="{{ route('persediaan.index') }}">
                     <i class="material-icons-round">bar_chart</i>
                     Persediaan Obat
                 </a>
