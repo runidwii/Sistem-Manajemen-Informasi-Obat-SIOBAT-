@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/input.css') }}">
     <link rel="stylesheet" href="{{ asset('css/relokasi.css') }}">
     <link rel="stylesheet" href="{{ asset('css/obat.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/laporan.css') }}">
 </head>
 <body class="bg-gray-100">
 <div class="flex">
@@ -59,8 +60,8 @@
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('laporan') ? 'active' : '' }}">
-                <a href="#">
+            <li class="{{ request()->routeIs('laporan.index') ? 'active' : '' }}">
+                <a href="{{ route('laporan.index') }}">
                     <i class="material-icons-round">text_snippet</i>
                     Laporan
                 </a>
