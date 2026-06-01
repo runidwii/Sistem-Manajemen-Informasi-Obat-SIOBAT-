@@ -2,51 +2,107 @@
 @section('title', 'Persediaan Obat')
 @section('content')
 
-<div class="main">
+<div class="input-grid">
 
-    <div class="card-box">
+    <!-- STATUS PERSEDIAAN -->
+    <a href="/status-persediaan" class="input-card blue">
 
-        <a href="/status-persediaan" class="stat-card dsorange">
-            <div class="icon-box">
-                <span class="material-icons-round">inventory_2</span>
+        <div class="input-kiri">
+
+            <div class="icon-input">
+                <span class="material-icons-round">
+                    inventory_2
+                </span>
             </div>
 
-            <div class="card-info">
-                <h4>Status Persediaan</h4>
-            </div>
-        </a>
-
-        <a href="{{ route('permintaan.index') }}" class="stat-card dsgreen">
-            <div class="icon-box">
-                <span class="material-icons-round">search</span>
+            <div class="info-input single-title">
+                <h2>Status Persediaan</h2>
             </div>
 
-            <div class="card-info">
-                <h4>Pemantauan Permintaan</h4>
-            </div>
-        </a>
+        </div>
 
-        <a href="{{ route('pemakaian.index') }}" class="stat-card dsblue">
-            <div class="icon-box">
-                <span class="material-icons-round">pie_chart</span>
+        <div class="aksi">
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+        </div>
+
+    </a>
+
+    <!-- PEMANTAUAN PERMINTAAN -->
+    <a href="{{ route('permintaan.index') }}" class="input-card green">
+
+        <div class="input-kiri">
+
+            <div class="icon-input">
+                <span class="material-icons-round">
+                    search
+                </span>
             </div>
 
-            <div class="card-info">
-                <h4>Data Pemakaian</h4>
-            </div>
-        </a>
-
-        <a href="{{ route('obatsampah.index') }}" class="stat-card dscyan">
-            <div class="icon-box">
-                <span class="material-icons-round">delete</span>
+            <div class="info-input single-title">
+                <h2>Pemantauan Permintaan</h2>
             </div>
 
-            <div class="card-info">
-                <h4>Obat Sampah</h4>
-            </div>
-        </a>
+        </div>
 
-    </div>
+        <div class="aksi">
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+        </div>
+
+    </a>
+
+    <!-- DATA PEMAKAIAN -->
+    <a href="{{ route('pemakaian.index') }}" class="input-card purple">
+
+        <div class="input-kiri">
+
+            <div class="icon-input">
+                <span class="material-icons-round">
+                    pie_chart
+                </span>
+            </div>
+
+            <div class="info-input single-title">
+                <h2>Data Pemakaian</h2>
+            </div>
+
+        </div>
+
+        <div class="aksi">
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+        </div>
+
+    </a>
+
+    <!-- OBAT SAMPAH -->
+    <a href="{{ route('obatsampah.index') }}" class="input-card green">
+
+        <div class="input-kiri">
+
+            <div class="icon-input">
+                <span class="material-icons-round">
+                    delete
+                </span>
+            </div>
+
+            <div class="info-input single-title">
+                <h2>Obat Sampah</h2>
+            </div>
+
+        </div>
+
+        <div class="aksi">
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+        </div>
+
+    </a>
 
 </div>
 
