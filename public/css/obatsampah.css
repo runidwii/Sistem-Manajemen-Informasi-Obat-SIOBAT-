@@ -1,0 +1,370 @@
+/* =============================================================
+   public/css/obat-sampah.css
+   Halaman Obat Sampah: index card, Obat Rusak & Obat Kedaluwarsa
+   ============================================================= */
+
+/* ── Token warna ────────────────────────────────────────────── */
+:root {
+    --primary-green    : #4caf50;
+    --primary-text     : #1a1a2e;
+    --muted-text       : #6b7280;
+    --border-color     : #e5e7eb;
+    --table-header-bg  : #f3f4f6;
+    --row-hover-bg     : #f9fafb;
+    --page-bg          : #f4f6fb;
+    --white            : #ffffff;
+
+    /* Ikon card */
+    --red-icon-bg      : #e57373;   /* merah muda seperti di desain */
+    --purple-icon-bg   : #9e8ecb;   /* ungu muda seperti di desain */
+
+    /* Hover glow card */
+    --card-hover-shadow: 0 0 0 3px rgba(100, 220, 220, 0.35),
+                         0 8px 28px rgba(80, 200, 210, 0.25);
+
+    /* Date */
+    --date-text        : #1565c0;
+    --date-border      : #d1d5db;
+}
+
+/* ── Wrapper umum ───────────────────────────────────────────── */
+.sampah-wrapper {
+    padding   : 32px 36px;
+    background: var(--page-bg);
+    min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HALAMAN INDEX — 2 card menu
+   ══════════════════════════════════════════════════════════════ */
+
+.page-title {
+    font-size    : 1.1rem;
+    font-weight  : 600;
+    color        : var(--primary-green);
+    margin       : 0 0 28px 0;
+    letter-spacing: -0.2px;
+}
+
+/* Grid 2 kolom */
+.sampah-grid {
+    display              : grid;
+    grid-template-columns: repeat(2, minmax(260px, 380px));
+    gap                  : 20px;
+}
+
+/* ── Card dasar ─────────────────────────────────────────────── */
+.sampah-card {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    gap            : 20px;
+    padding        : 40px 24px;
+    background     : var(--white);
+    border-radius  : 16px;
+    box-shadow     : 0 2px 12px rgba(0,0,0,0.07);
+    text-decoration: none;
+    color          : var(--primary-text);
+    transition     : box-shadow 0.25s ease, transform 0.2s ease;
+    cursor         : pointer;
+}
+
+/* Efek hover glow cyan — CSS murni */
+.sampah-card:hover {
+    box-shadow: var(--card-hover-shadow);
+    transform : translateY(-3px);
+}
+
+/* Label judul card */
+.sampah-card__label {
+    font-size  : 1.1rem;
+    font-weight: 700;
+    color      : var(--primary-text);
+    text-align : center;
+}
+
+/* Lingkaran ikon */
+.sampah-card__icon-wrap {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 90px;
+    height         : 90px;
+    border-radius  : 50%;
+}
+
+/* Warna lingkaran & ikon */
+.sampah-card__icon-wrap--red {
+    background: var(--red-icon-bg);
+    color     : #fff;
+    /* glow merah lembut seperti di desain */
+    box-shadow: 0 0 28px 10px rgba(229, 115, 115, 0.35);
+}
+
+.sampah-card__icon-wrap--purple {
+    background: var(--purple-icon-bg);
+    color     : #fff;
+    /* glow ungu lembut seperti di desain */
+    box-shadow: 0 0 28px 10px rgba(158, 142, 203, 0.35);
+}
+
+.sampah-card__icon-wrap .material-symbols-outlined {
+    font-size: 42px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HALAMAN TABEL (Obat Rusak & Obat Kedaluwarsa)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Header baris judul ─────────────────────────────────────── */
+.tabel-header {
+    margin-bottom: 16px;
+}
+
+/* Tombol kembali */
+.btn-back {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 6px;
+    font-size      : 1rem;
+    font-weight    : 700;
+    color          : var(--primary-green);
+    text-decoration: none;
+    transition     : opacity 0.2s;
+}
+
+.btn-back:hover { opacity: 0.75; }
+
+.btn-back .material-symbols-outlined {
+    font-size  : 20px;
+    line-height: 1;
+}
+
+/* ── Baris aksi: tombol input + filter tanggal ──────────────── */
+.aksi-bar {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    flex-wrap      : wrap;
+    gap            : 16px;
+    margin-bottom  : 20px;
+}
+
+/* Tombol + Input Data */
+.btn-input {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 6px;
+    padding        : 8px 18px;
+    background     : var(--primary-green);
+    color          : #fff;
+    border-radius  : 20px;
+    font-size      : 0.88rem;
+    font-weight    : 600;
+    text-decoration: none;
+    transition     : opacity 0.2s, transform 0.15s;
+    white-space    : nowrap;
+}
+
+.btn-input:hover {
+    opacity  : 0.88;
+    transform: translateY(-1px);
+}
+
+.btn-input .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* Filter tanggal */
+.date-filter {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+}
+
+.date-separator {
+    font-size  : 0.9rem;
+    color      : var(--muted-text);
+    font-weight: 500;
+}
+
+.date-input-wrap {
+    display      : flex;
+    align-items  : center;
+    gap          : 6px;
+    padding      : 7px 14px;
+    background   : var(--white);
+    border       : 1.5px solid var(--date-border);
+    border-radius: 10px;
+    box-shadow   : 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.date-icon {
+    font-size  : 18px;
+    color      : var(--date-text);
+    line-height: 1;
+}
+
+.date-input {
+    border      : none;
+    outline     : none;
+    font-size   : 0.88rem;
+    font-weight : 600;
+    color       : var(--date-text);
+    background  : transparent;
+    cursor      : pointer;
+    min-width   : 108px;
+}
+
+/* ── Kontainer tabel ────────────────────────────────────────── */
+.table-container {
+    background   : var(--white);
+    border-radius: 14px;
+    box-shadow   : 0 2px 12px rgba(0,0,0,0.07);
+    overflow-x   : auto;
+}
+
+/* ── Tabel ──────────────────────────────────────────────────── */
+.sampah-table {
+    width          : 100%;
+    border-collapse: collapse;
+    font-size      : 0.92rem;
+    display        : table;   /* pastikan tidak terpengaruh flex luar */
+}
+
+/* ── Thead ──────────────────────────────────────────────────── */
+.sampah-table thead {
+    display: table-header-group;
+}
+
+.sampah-table thead tr {
+    background: var(--table-header-bg);
+    display   : table-row;
+}
+
+.sampah-table th {
+    display       : table-cell;
+    padding       : 16px 18px;
+    text-align    : left;
+    font-size     : 0.85rem;
+    font-weight   : 700;
+    color         : var(--primary-text);
+    white-space   : nowrap;
+    border-bottom : 2px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Wrapper ikon sort di dalam th */
+.th-inner {
+    display    : inline-flex;
+    align-items: center;
+    gap        : 4px;
+    cursor     : pointer;
+    user-select: none;
+}
+
+.th-inner:hover { color: var(--primary-green); }
+
+.sort-icon {
+    font-size     : 16px;
+    color         : #9ca3af;
+    line-height   : 1;
+    vertical-align: middle;
+}
+
+/* ── Tbody ──────────────────────────────────────────────────── */
+.sampah-table tbody {
+    display: table-row-group;
+}
+
+.sampah-table tbody tr {
+    display      : table-row;
+    border-bottom: 1px solid var(--border-color);
+    transition   : background 0.15s;
+}
+
+.sampah-table tbody tr:last-child { border-bottom: none; }
+
+.sampah-table tbody tr:hover { background: var(--row-hover-bg); }
+
+.sampah-table td {
+    display       : table-cell;
+    padding       : 15px 18px;
+    color         : var(--primary-text);
+    white-space   : nowrap;
+    vertical-align: middle;
+}
+
+/* Kolom No rata tengah */
+.sampah-table th:first-child,
+.sampah-table td:first-child {
+    text-align: center;
+    width     : 56px;
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+.empty-state {
+    text-align: center;
+    color     : var(--muted-text);
+    padding   : 48px !important;
+    font-style: italic;
+    font-size : 0.95rem;
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.pagination-wrap {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    gap            : 6px;
+    margin-top     : 24px;
+}
+
+.page-btn {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 32px;
+    height         : 32px;
+    border         : 1.5px solid var(--border-color);
+    border-radius  : 8px;
+    background     : var(--white);
+    color          : var(--primary-text);
+    font-size      : 0.85rem;
+    font-weight    : 600;
+    cursor         : pointer;
+    transition     : all 0.15s;
+}
+
+.page-btn:hover:not(:disabled) {
+    border-color: var(--primary-green);
+    color       : var(--primary-green);
+}
+
+.page-btn--active {
+    background  : var(--primary-green);
+    border-color: var(--primary-green);
+    color       : #fff;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor : not-allowed;
+}
+
+.page-btn .material-symbols-outlined {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* ── Responsif ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sampah-wrapper  { padding: 20px 12px; }
+    .sampah-grid     { grid-template-columns: 1fr; }
+    .aksi-bar        { flex-direction: column; align-items: flex-start; }
+    .table-container { overflow-x: auto; }
+
+    .sampah-table th,
+    .sampah-table td { padding: 12px 12px; }
+}
