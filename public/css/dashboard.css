@@ -81,23 +81,23 @@
 }
 
 /* COLORS */
-.blue .icon-box{
+.dsblue .icon-box{
     background: #6366f1;
 }
 
-.orange .icon-box{
+.dsorange .icon-box{
     background: #f59e0b;
 }
 
-.green .icon-box{
+.dsgreen .icon-box{
     background: #4ade80;
 }
 
-.red .icon-box{
+.dsred .icon-box{
     background: #f87171;
 }
 
-.cyan .icon-box{
+.dscyan .icon-box{
     background: #7dd3fc;
 }
 

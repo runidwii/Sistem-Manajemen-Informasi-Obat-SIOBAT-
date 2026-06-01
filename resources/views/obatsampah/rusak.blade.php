@@ -2,127 +2,72 @@
 
 @section('content')
 
-{{-- ============================================================
-     Halaman: Obat Rusak (Tabel Detail)
-     File   : resources/views/persediaan/rusak.blade.php
-     ============================================================ --}}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="{{ asset('css/obat-sampah.css') }}">
 
-<div class="persediaan-wrapper">
+<div class="sampah-wrapper">
 
-    {{-- Tombol kembali + Judul --}}
-    <div class="page-header">
-        <a href="{{ route('persediaan.index') }}" class="back-link">
-            <span class="material-icons">arrow_back</span>
-            <span>Obat Rusak</span>
+    {{-- ── Header: tombol kembali --}}
+    <div class="tabel-header">
+        <a href="{{ route('obatsampah.index') }}" class="btn-back">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Obat Rusak
         </a>
     </div>
 
-    {{-- Toolbar: tombol Input Data & Filter Tanggal --}}
-    <div class="toolbar">
-        {{-- Tombol tambah data --}}
-        <a href="{{ route('persediaan.rusak.create') }}" class="btn-input-data">
-            <span class="material-icons btn-icon">add</span>
+    {{-- ── Baris aksi: tombol input + filter tanggal --}}
+    <div class="aksi-bar">
+        <a href="{{ route('obatrusak.create') }}" class="btn-input">
+            <span class="material-symbols-outlined">add</span>
             Input Data
         </a>
 
-        {{-- Filter rentang tanggal --}}
         <div class="date-filter">
-            <div class="date-badge">
-                <span class="material-icons date-icon">calendar_today</span>
-                <span class="date-text">01-01-2022</span>
+            <div class="date-input-wrap">
+                <span class="material-symbols-outlined date-icon">calendar_month</span>
+                <input type="date" class="date-input" value="{{ $tanggalMulai ?? '2022-01-01' }}">
             </div>
             <span class="date-separator">sampai</span>
-            <div class="date-badge">
-                <span class="material-icons date-icon">calendar_today</span>
-                <span class="date-text">31-12-2026</span>
+            <div class="date-input-wrap">
+                <span class="material-symbols-outlined date-icon">calendar_month</span>
+                <input type="date" class="date-input" value="{{ $tanggalAkhir ?? '2026-12-31' }}">
             </div>
         </div>
     </div>
 
-    {{-- Tabel Data Obat Rusak --}}
+    {{-- ── Tabel Obat Rusak --}}
     <div class="table-container">
-        <table class="data-table">
+        <table class="sampah-table">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>
-                        Kode Obat
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
-                    <th>
-                        Nama Obat
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
-                    <th>
-                        Jumlah Obat
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
-                    <th>
-                        Tanggal Teridentifikasi
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
-                    <th>
-                        Peruntukan Bulan
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
-                    <th>
-                        Kode Masuk Obat
-                        <span class="material-icons sort-icon">unfold_more</span>
-                    </th>
+                    <th><span class="th-inner">Kode Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Nama Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Jumlah Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Tanggal Teridentifikasi <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Peruntukan Bulan <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Kode Masuk Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
                 </tr>
             </thead>
             <tbody>
-                {{-- Data dummy sesuai referensi --}}
+                @forelse($obatRusak as $index => $item)
                 <tr>
-                    <td class="td-center">1</td>
-                    <td></td>
-                    <td>Diazepam</td>
-                    <td>05 strip</td>
-                    <td>12-01-2025</td>
-                    <td>09-2025</td>
-                    <td>T000010</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $item['kode_obat'] }}</td>
+                    <td>{{ $item['nama_obat'] }}</td>
+                    <td>{{ $item['jumlah_obat'] }}</td>
+                    <td>{{ $item['tanggal_teridentifikasi'] }}</td>
+                    <td>{{ $item['peruntukan_bulan'] }}</td>
+                    <td>{{ $item['kode_masuk_obat'] }}</td>
                 </tr>
+                @empty
                 <tr>
-                    <td class="td-center">2</td>
-                    <td></td>
-                    <td>Cefadroxil</td>
-                    <td>20 strip</td>
-                    <td>12-01-2025</td>
-                    <td>11-2025</td>
-                    <td>M000012</td>
+                    <td colspan="7" class="empty-state">Tidak ada data obat rusak.</td>
                 </tr>
-                <tr>
-                    <td class="td-center">3</td>
-                    <td></td>
-                    <td>Ranitidine</td>
-                    <td>08 strip</td>
-                    <td>12-02-2025</td>
-                    <td>06-2025</td>
-                    <td>T000027</td>
-                </tr>
-                <tr>
-                    <td class="td-center">4</td>
-                    <td></td>
-                    <td>Haloperidol</td>
-                    <td>20 strip</td>
-                    <td>25-01-2026</td>
-                    <td>09-2026</td>
-                    <td>T000011</td>
-                </tr>
-                <tr>
-                    <td class="td-center">5</td>
-                    <td></td>
-                    <td>Chlorpromazine</td>
-                    <td>20 strip</td>
-                    <td>25-01-2026</td>
-                    <td>09-2026</td>
-                    <td>T000012</td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
-
-    {{-- Tidak ada pagination pada halaman Obat Rusak sesuai referensi --}}
 
 </div>
 

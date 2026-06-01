@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('persediaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade');
+            $table->foreignId('id_penerimaan')->constrained('penerimaans')->onDelete('cascade');
             $table->integer('stok_terkini');
             $table->integer('minimal_stok');
-            $table->date('tanggal_kadaluarsa');
             $table->enum('status_persediaan', ['Memadai', 'Sedikit', 'Darurat']);
             $table->timestamps();
         });

@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Obat;
 use App\Models\Permintaan;
-use App\Models\Persediaan;
+use App\Models\Penerimaan;
 use App\Models\Pemakaian;
+use App\Models\Persediaan;
 
 class DashboardController extends Controller
 {
@@ -26,7 +27,7 @@ class DashboardController extends Controller
             'Diproses'
         )->count();
 
-        $kadaluarsa = Persediaan::whereDate(
+        $kadaluarsa = Penerimaan::whereDate(
             'tanggal_kadaluarsa',
             '<=',
             now()->addMonths(3)
@@ -62,6 +63,6 @@ class DashboardController extends Controller
             'obatKeluar',
             'grafikObat',
             'permintaanTerbaru'
-        ));
+        ))->with('pageTitle', 'Dashboard');
     }
 }

@@ -12,12 +12,24 @@ use App\Http\Controllers\PersediaanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PersediaanObatController;
 use App\Http\Controllers\PemantauanPermintaanController;
+use App\Http\Controllers\InputController;
 
 Route::resource('obat', ObatController::class);
 Route::resource('permintaan', PermintaanController::class);
 Route::resource('penerimaan', PenerimaanController::class);
 Route::resource('relokasi', RelokasiController::class);
-Route::resource('obatsampah', ObatsampahController::class);
+
+Route::get('/obatsampah', [ObatsampahController::class, 'index'])
+    ->name('obatsampah.index');
+Route::get('/obatsampah/rusak', [ObatsampahController::class, 'rusak'])
+    ->name('obatrusak.index');
+Route::get('/obatsampah/rusak/create', [ObatsampahController::class, 'rusakCreate'])
+    ->name('obatrusak.create');
+Route::get('/obatsampah/kadaluwarsa', [ObatsampahController::class, 'kadaluwarsa'])
+    ->name('obatkadaluwarsa.index');
+Route::get('/obatsampah/kadaluwarsa/create', [ObatsampahController::class, 'kadaluwarsaCreate'])
+    ->name('obatkadaluwarsa.create');
+
 Route::resource('pemakaian', PemakaianController::class);
 Route::resource('persediaan', PersediaanController::class);
 Route::get('/login', [LoginController::class, 'index'])
@@ -26,12 +38,16 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard')
     ->middleware('auth');
 
 Route::get('/persediaanobat', [PersediaanObatController::class, 'index'])
     ->name('persediaanobat.index');
 Route::get('/pemantauanpermintaan', [PemantauanPermintaanController::class, 'index'])
     ->name('pemantauanpermintaan.index');
+
+Route::get('/input', [InputController::class, 'index'])
+    ->name('input.index');
 
 Route::get('/', function () {
     return view('welcome');

@@ -1,12 +1,12 @@
 @extends('layouts.app')
-
+@section('title', 'Beranda')
 @section('content')
 
 <!-- CARD -->
 <div class="main">
 
      <div class="card-box">
-        <div class="stat-card blue">
+        <div class="stat-card dsblue">
             <div class="icon-box">
                 <span class="material-icons-round">medication</span>
             </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="stat-card orange">
+        <div class="stat-card dsorange">
             <div class="icon-box">
                 <span class="material-icons-round">warning</span>
             </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="stat-card green">
+        <div class="stat-card dsgreen">
             <div class="icon-box">
                 <span class="material-icons-round">shopping_cart</span>
             </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="stat-card red">
+        <div class="stat-card dsred">
             <div class="icon-box">
                 <span class="material-icons-round">close</span>
             </div>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="stat-card cyan">
+        <div class="stat-card dscyan">
             <div class="icon-box">
                 <span class="material-icons-round">inventory_2</span>
             </div>

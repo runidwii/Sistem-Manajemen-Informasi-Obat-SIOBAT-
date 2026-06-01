@@ -27,13 +27,15 @@ class PenerimaanController extends Controller
         $request->validate([
             'permintaan_id' => 'required',
             'jumlah_diterima' => 'required|numeric',
-            'tanggal_penerimaan' => 'required|date'
+            'tanggal_penerimaan' => 'required|date',
+            'tanggal_kadaluarsa' => 'required|date'
         ]);
 
         Penerimaan::create([
             'permintaan_id' => $request->permintaan_id,
             'jumlah_diterima' => $request->jumlah_diterima,
             'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
             'keterangan' => $request->keterangan
         ]);
 
@@ -55,7 +57,8 @@ class PenerimaanController extends Controller
         $request->validate([
             'permintaan_id' => 'required',
             'jumlah_diterima' => 'required|numeric',
-            'tanggal_penerimaan' => 'required|date'
+            'tanggal_penerimaan' => 'required|date',
+            'tanggal_kadaluarsa' => 'required|date'
         ]);
 
         $penerimaan = Penerimaan::findOrFail($id);
@@ -64,6 +67,7 @@ class PenerimaanController extends Controller
             'permintaan_id' => $request->permintaan_id,
             'jumlah_diterima' => $request->jumlah_diterima,
             'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
             'keterangan' => $request->keterangan
         ]);
 

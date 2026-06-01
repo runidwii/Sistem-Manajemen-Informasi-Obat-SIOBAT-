@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade');
             $table->integer('jumlah_permintaan');
             $table->date('tanggal_permintaan');
-            $table->enum('peruntukan_bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
+            $table->integer('stok_awal');
+            $table->string('peruntukan_bulan');
             $table->text('keterangan')->nullable();
-            $table->enum('status_permintaan', ['Dikirim', 'Diterima', 'Diproses', 'Disetujui']);
+            $table->enum('status_permintaan', ['Dikirim', 'Diterima', 'Diproses']);
             $table->timestamps();
         });
     }
