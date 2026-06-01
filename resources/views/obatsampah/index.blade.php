@@ -2,64 +2,38 @@
 
 @section('content')
 
-<div class="obat-sampah-container">
+{{-- ============================================================
+     Halaman: Persediaan Obat - Sub Kategori "Obat Sampah"
+     File   : resources/views/persediaan/index.blade.php
+     ============================================================ --}}
 
-    <h1 class="title">
-        Obat <span>“Sampah”</span>
-    </h1>
+<div class="persediaan-wrapper">
 
-    <div class="card-wrapper">
+    {{-- Judul Sub-Halaman --}}
+    <h2 class="section-title">Obat "Sampah"</h2>
 
-        <!-- CARD 1 -->
-        <div class="sampah-card">
+    {{-- Grid Card Kategori --}}
+    <div class="card-grid">
 
-            <h2>Obat Kedaluwarsa</h2>
-
-            <div class="icon-circle red">
-                ✕
+        {{-- Card: Obat Kedaluwarsa --}}
+        <a href="{{ route('persediaan.kadaluwarsa') }}" class="obat-card card-kedaluwarsa">
+            <span class="card-label">Obat Kedaluwarsa</span>
+            <div class="card-icon-wrap icon-red">
+                {{-- Icon: close / X dari Google Material Icons --}}
+                <span class="material-icons card-icon">close</span>
             </div>
+        </a>
 
-            <!-- HOVER BOX -->
-            <div class="hover-box">
-                <div class="mini-icon">
-                    📦
-                </div>
-
-                <h3>Obat Keluar</h3>
-
-                <h1>0</h1>
-
-                <p>Total obat keluar bulan ini</p>
+        {{-- Card: Obat Rusak --}}
+        <a href="{{ route('persediaan.rusak') }}" class="obat-card card-rusak">
+            <span class="card-label">Obat Rusak</span>
+            <div class="card-icon-wrap icon-purple">
+                {{-- Icon: warning dari Google Material Icons --}}
+                <span class="material-icons card-icon">warning_amber</span>
             </div>
-
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="sampah-card">
-
-            <h2>Obat Rusak</h2>
-
-            <div class="icon-circle purple">
-                ⚠
-            </div>
-
-            <!-- HOVER BOX -->
-            <div class="hover-box">
-                <div class="mini-icon">
-                    📦
-                </div>
-
-                <h3>Obat Keluar</h3>
-
-                <h1>0</h1>
-
-                <p>Total obat keluar bulan ini</p>
-            </div>
-
-        </div>
+        </a>
 
     </div>
-
 </div>
 
 @endsection

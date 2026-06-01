@@ -10,6 +10,8 @@ use App\Http\Controllers\ObatsampahController;
 use App\Http\Controllers\PemakaianController;
 use App\Http\Controllers\PersediaanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PersediaanObatController;
+use App\Http\Controllers\PemantauanPermintaanController;
 
 Route::resource('obat', ObatController::class);
 Route::resource('permintaan', PermintaanController::class);
@@ -25,6 +27,11 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth');
+
+Route::get('/persediaanobat', [PersediaanObatController::class, 'index'])
+    ->name('persediaanobat.index');
+Route::get('/pemantauanpermintaan', [PemantauanPermintaanController::class, 'index'])
+    ->name('pemantauanpermintaan.index');
 
 Route::get('/', function () {
     return view('welcome');

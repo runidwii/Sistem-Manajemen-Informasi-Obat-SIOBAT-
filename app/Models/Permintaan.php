@@ -15,6 +15,15 @@ class Permintaan extends Model
         'status_permintaan'
     ];
 
+    // app/Models/Permintaan.php
+
+public function scopeFilterTanggal($query, $mulai, $akhir)
+{
+    return $query->whereBetween('tanggal_permintaan', [
+        $mulai,
+        $akhir
+    ]);
+}
     public function obat()
     {
         return $this->belongsTo(Obat::class);

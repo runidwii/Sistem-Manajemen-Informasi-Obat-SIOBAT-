@@ -1,0 +1,263 @@
+/* =============================================================
+   public/css/pemantauanpermintaan.css
+   Halaman Pemantauan Permintaan — tabel & filter tanggal
+   ============================================================= */
+
+/* ── Warna & token ──────────────────────────────────────────── */
+:root {
+    --primary-green   : #4caf50;
+    --primary-text    : #1a1a2e;
+    --muted-text      : #6b7280;
+    --border-color    : #e5e7eb;
+    --table-header-bg : #f3f4f6;
+    --row-hover-bg    : #f9fafb;
+    --page-bg         : #f4f6fb;
+    --white           : #ffffff;
+
+    /* Badge */
+    --badge-dikirim-bg   : #4caf50;
+    --badge-dikirim-text : #ffffff;
+    --badge-diproses-bg  : #e6c700;
+    --badge-diproses-text: #ffffff;
+    --badge-diterima-bg  : #1565c0;
+    --badge-diterima-text: #ffffff;
+    --badge-disetujui-bg : #f97316;
+    --badge-disetujui-text: #ffffff;
+
+    /* Date */
+    --date-border: #d1d5db;
+    --date-radius: 10px;
+    --date-text  : #1565c0;
+}
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+.pemantauan-wrapper {
+    padding   : 32px 36px;
+    background: var(--page-bg);
+    min-height: 100vh;
+}
+
+/* ── Header baris atas ──────────────────────────────────────── */
+.pemantauan-header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    margin-bottom  : 28px;
+    flex-wrap      : wrap;
+    gap            : 16px;
+}
+
+/* ── Tombol kembali ─────────────────────────────────────────── */
+.btn-back {
+    display        : inline-flex;
+    align-items    : center;
+    gap            : 6px;
+    font-size      : 1rem;
+    font-weight    : 700;
+    color          : var(--primary-green);
+    text-decoration: none;
+    transition     : opacity 0.2s;
+}
+
+.btn-back:hover {
+    opacity: 0.75;
+}
+
+.btn-back .material-symbols-outlined {
+    font-size  : 20px;
+    line-height: 1;
+}
+
+/* ── Filter tanggal ─────────────────────────────────────────── */
+.date-filter {
+    display    : flex;
+    align-items: center;
+    gap        : 12px;
+}
+
+.date-separator {
+    font-size  : 0.9rem;
+    color      : var(--muted-text);
+    font-weight: 500;
+}
+
+.date-input-wrap {
+    display     : flex;
+    align-items : center;
+    gap         : 6px;
+    padding     : 7px 14px;
+    background  : var(--white);
+    border      : 1.5px solid var(--date-border);
+    border-radius: var(--date-radius);
+    box-shadow  : 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.date-icon {
+    font-size  : 18px;
+    color      : var(--date-text);
+    line-height: 1;
+}
+
+.date-input {
+    border    : none;
+    outline   : none;
+    font-size : 0.9rem;
+    font-weight: 600;
+    color     : var(--date-text);
+    background: transparent;
+    cursor    : pointer;
+    min-width : 110px;
+}
+
+/* ── Kontainer tabel ────────────────────────────────────────── */
+.table-container {
+    background   : var(--white);
+    border-radius: 14px;
+    box-shadow   : 0 2px 12px rgba(0,0,0,0.07);
+    overflow-x   : auto;   /* scroll horizontal di layar kecil */
+}
+
+/* ── Tabel ──────────────────────────────────────────────────── */
+.permintaan-table {
+    width          : 100%;
+    border-collapse: collapse;
+    font-size      : 0.92rem;
+    /* PENTING: pastikan tabel tidak dipengaruhi display luar */
+    display        : table;
+}
+
+/* ── Header tabel ───────────────────────────────────────────── */
+.permintaan-table thead {
+    display: table-header-group; /* paksa thead tetap sebagai header */
+}
+
+.permintaan-table thead tr {
+    background: var(--table-header-bg);
+    display   : table-row;        /* paksa tr tetap sebagai baris */
+}
+
+.permintaan-table th {
+    /* KRITIS: gunakan display table-cell, BUKAN flex */
+    display      : table-cell;
+    padding      : 16px 18px;
+    text-align   : left;
+    font-size    : 0.85rem;
+    font-weight  : 700;
+    color        : var(--primary-text);
+    white-space  : nowrap;
+    border-bottom: 2px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Ikon sort di dalam th — pakai span inline, bukan flex di th */
+.th-inner {
+    display    : inline-flex;
+    align-items: center;
+    gap        : 4px;
+    cursor     : pointer;
+    user-select: none;
+}
+
+.th-inner:hover {
+    color: var(--primary-green);
+}
+
+.sort-icon {
+    font-size  : 16px;
+    color      : #9ca3af;
+    line-height: 1;
+    /* paksa ikon tidak naik/turun */
+    vertical-align: middle;
+}
+
+/* ── Body tabel ─────────────────────────────────────────────── */
+.permintaan-table tbody {
+    display: table-row-group;
+}
+
+.permintaan-table tbody tr {
+    display      : table-row;
+    border-bottom: 1px solid var(--border-color);
+    transition   : background 0.15s;
+}
+
+.permintaan-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.permintaan-table tbody tr:hover {
+    background: var(--row-hover-bg);
+}
+
+.permintaan-table td {
+    display    : table-cell;
+    padding    : 15px 18px;
+    color      : var(--primary-text);
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* ── Kolom No — rata tengah & lebar tetap ───────────────────── */
+.permintaan-table th:first-child,
+.permintaan-table td:first-child {
+    text-align: center;
+    width     : 56px;
+}
+
+/* ── Badge status ───────────────────────────────────────────── */
+.badge {
+    display      : inline-block;
+    padding      : 5px 16px;
+    border-radius: 20px;
+    font-size    : 0.8rem;
+    font-weight  : 700;
+    text-align   : center;
+    white-space  : nowrap;
+    letter-spacing: 0.2px;
+}
+
+.badge--dikirim {
+    background: var(--badge-dikirim-bg);
+    color     : var(--badge-dikirim-text);
+}
+
+.badge--diproses {
+    background: var(--badge-diproses-bg);
+    color     : var(--badge-diproses-text);
+}
+
+.badge--diterima {
+    background: var(--badge-diterima-bg);
+    color     : var(--badge-diterima-text);
+}
+
+.badge--disetujui {
+    background: var(--badge-disetujui-bg);
+    color     : var(--badge-disetujui-text);
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+.empty-state {
+    text-align: center;
+    color     : var(--muted-text);
+    padding   : 48px !important;
+    font-style: italic;
+    font-size : 0.95rem;
+}
+
+/* ── Responsif ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .pemantauan-wrapper {
+        padding: 20px 12px;
+    }
+
+    .pemantauan-header {
+        flex-direction: column;
+        align-items   : flex-start;
+    }
+
+    .permintaan-table th,
+    .permintaan-table td {
+        padding: 12px 12px;
+    }
+}
