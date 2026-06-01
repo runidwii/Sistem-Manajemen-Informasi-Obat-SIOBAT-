@@ -19,7 +19,7 @@ class PersediaanController extends Controller
     {
         $obat = Obat::all();
 
-        return view('persediaan.create', compact('obat'));
+        return view('statuspersediaan.create', compact('obat'));
     }
 
     public function store(Request $request)

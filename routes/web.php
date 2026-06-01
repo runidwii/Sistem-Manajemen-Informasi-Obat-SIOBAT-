@@ -33,8 +33,16 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::get('/status-persediaan', function () {
     $persediaan = Persediaan::with('obat')->get();
+
     return view('statuspersediaan.index', compact('persediaan'));
 })->name('statuspersediaan.index');    
+
+Route::get('/status-persediaan/create', function () {
+    $obat = Obat::all();
+
+    return view('statuspersediaan.create', compact('obat'));
+})->name('statuspersediaan.create');
+
 
 Route::get('/', function () {
     return view('welcome');

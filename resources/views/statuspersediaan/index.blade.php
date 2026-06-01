@@ -15,6 +15,16 @@
                 <input type="text" placeholder="Cari nama obat...">
             </div>
 
+        <a href="{{ route('persediaan.create') }}" class="btn-tambah">
+
+        <span class="material-icons-round">
+            add
+        </span>
+
+        Tambah Persediaan
+
+    </a>
+            
         </div>
 
     </div>
