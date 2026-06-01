@@ -1,0 +1,113 @@
+.riwayat-card{
+    background:#fff;
+    border-radius:28px;
+    padding:28px;
+    margin-top:20px;
+}
+
+.riwayat-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.riwayat-header h2{
+    font-size:20px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+.search-box{
+    width:650px;
+    height:46px;
+    border:1px solid #cbd5e1;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    gap:10px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+.table-wrapper table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table-wrapper thead{
+    background:#b8d8f0;
+}
+
+.table-wrapper th{
+    padding:18px;
+    text-align:center;
+    border:1px solid #d8e5ef;
+}
+
+.table-wrapper td{
+    padding:18px;
+    text-align:center;
+    border:1px solid #e5e7eb;
+}
+
+.nama-obat{
+    display:flex;
+    flex-direction:column;
+    text-align:left;
+}
+
+.nama-obat small{
+    color:#64748b;
+    margin-top:4px;
+}
+
+.badge{
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.hijau{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.kuning{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.merah{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.btn-ajukan{
+    background:#dcfce7;
+    color:#166534;
+    border:none;
+    padding:8px 14px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    margin:auto;
+}
+
+.empty-state{
+    padding:35px;
+    color:#64748b;
+}

@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PersediaanObatController;
 use App\Http\Controllers\PemantauanPermintaanController;
 use App\Http\Controllers\InputController;
+use App\Models\Persediaan;
 
 Route::resource('obat', ObatController::class);
 Route::resource('permintaan', PermintaanController::class);
@@ -51,4 +52,14 @@ Route::get('/input', [InputController::class, 'index'])
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/status-persediaan', function () {
+    $persediaan = Persediaan::with('obat')->get();
+    return view('statuspersediaan.index', compact('persediaan'));
+})->name('statuspersediaan.index');    
+
+Route::get('/', function () {
+    return view('welcome');
+
 });
