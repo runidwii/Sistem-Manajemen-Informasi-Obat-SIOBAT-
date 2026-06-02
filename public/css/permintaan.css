@@ -1,8 +1,4 @@
-/* ============================================
-   PERMINTAAN.CSS — Form Permintaan Obat
-   ============================================ */
 
-/* ===== FORM CARD ===== */
 .form-card {
     background: white;
     padding: 30px;
@@ -10,7 +6,6 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* ===== FORM HEADER ===== */
 .form-header {
     margin-bottom: 30px;
 }
@@ -28,14 +23,12 @@
     margin: 0;
 }
 
-/* ===== FORM GRID ===== */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 
-/* ===== FORM GROUP ===== */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -49,7 +42,6 @@
     color: #334155;
 }
 
-/* ===== INPUTS ===== */
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -74,7 +66,6 @@
     box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.12);
 }
 
-/* ===== SELECT WRAPPER ===== */
 .select-wrapper {
     position: relative;
     width: 100%;
@@ -98,7 +89,6 @@
     font-size: 20px;
 }
 
-/* ===== INPUT + SATUAN WRAPPER ===== */
 .input-satuan-wrapper {
     display: flex;
     gap: 8px;
@@ -122,19 +112,16 @@
     border-radius: 14px;
 }
 
-/* ===== FULL WIDTH ===== */
 .full {
     grid-column: 1 / -1;
     width: 100%;
 }
 
-/* ===== TEXTAREA ===== */
 .form-group textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-/* ===== FORM ACTION ===== */
 .form-action {
     margin-top: 20px;
     display: flex;
@@ -143,7 +130,6 @@
     gap: 20px;
 }
 
-/* ===== BUTTON SIMPAN ===== */
 .btn-simpan {
     background: #7E72FF;
     font-size: 16px;
@@ -161,7 +147,6 @@
     background: rgb(93, 11, 235);
 }
 
-/* ===== BUTTON BATAL ===== */
 .btn-batal {
     background: #e54545;
     font-size: 16px;
@@ -183,9 +168,6 @@
     text-decoration: none;
 }
 
-/* ============================================
-   DETAIL CARD
-   ============================================ */
 .detail-card {
     background: white;
     border-radius: 24px;
