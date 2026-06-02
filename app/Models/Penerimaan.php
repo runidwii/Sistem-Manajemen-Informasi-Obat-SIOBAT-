@@ -8,10 +8,15 @@ class Penerimaan extends Model
 {
     protected $fillable = [
         'permintaan_id',
+        'kode_penerimaan',
+        'pemasok',
+        'dosis_obat',
+        'stok_awal',
         'jumlah_diterima',
-        'tanggal_penerimaan',
+        'tanggal_diterima',
+        'peruntukan_bulan',
         'tanggal_kadaluarsa',
-        'keterangan'
+        'catatan'
     ];
 
     public function permintaan()

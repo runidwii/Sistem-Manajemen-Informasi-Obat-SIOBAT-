@@ -37,8 +37,7 @@ class ObatController extends Controller
             'kategori_obat' => $request->kategori_obat
         ]);
 
-        return redirect('/obat')
-            ->with('success', 'Data obat berhasil ditambahkan');
+        return redirect()->route('obat.index')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
 
     public function edit($id)
@@ -68,8 +67,7 @@ class ObatController extends Controller
             'kategori_obat' => $request->kategori_obat
         ]);
 
-        return redirect('/obat')
-            ->with('success', 'Data obat berhasil diupdate');
+        return redirect()->route('obat.index')->with(['success' => 'Data Berhasil Diperbarui!']);
     }
 
     public function destroy($id)
@@ -78,7 +76,13 @@ class ObatController extends Controller
 
         $obat->delete();
 
-        return redirect('/obat')
-            ->with('success', 'Data obat berhasil dihapus');
+        return redirect()->route('obat.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function show($id)
+    {
+        $obat = Obat::findOrFail($id);
+
+        return view('obat.show', compact('obat'));
     }
 }

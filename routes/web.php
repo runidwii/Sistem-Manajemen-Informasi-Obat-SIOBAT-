@@ -14,6 +14,7 @@ use App\Http\Controllers\PersediaanObatController;
 use App\Http\Controllers\PemantauanPermintaanController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\StatuspersediaanController;
+use App\Http\Controllers\LaporanController;
 use App\Models\Persediaan;
 
 Route::resource('obat', ObatController::class);
@@ -60,9 +61,15 @@ Route::get('/status-persediaan', [StatuspersediaanController::class, 'index'])
 
 Route::get('/status-persediaan/create', [StatuspersediaanController::class, 'create'])
     ->name('statuspersediaan.create');
-
+    
 Route::post('/status-persediaan', [StatuspersediaanController::class, 'store'])
     ->name('statuspersediaan.store');
+Route::get('/laporan', [LaporanController::class, 'index'])
+    ->name('laporan.index');
+Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])
+    ->name('laporan.excel');
+Route::get('/laporan/pdf', [LaporanController::class, 'exportPdf'])
+    ->name('laporan.pdf');
 
 Route::get('/', function () {
     return view('welcome');

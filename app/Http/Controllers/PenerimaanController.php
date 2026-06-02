@@ -10,14 +10,12 @@ class PenerimaanController extends Controller
 {
     public function index()
     {
-        $penerimaan = Penerimaan::with('permintaan')->get();
-
-        return view('penerimaan.index', compact('penerimaan'));
+        return redirect()->route('input.index');
     }
 
     public function create()
     {
-        $permintaan = Permintaan::all();
+        $permintaan = Permintaan::with('obat')->get();
 
         return view('penerimaan.create', compact('permintaan'));
     }
@@ -25,53 +23,77 @@ class PenerimaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'permintaan_id' => 'required',
-            'jumlah_diterima' => 'required|numeric',
-            'tanggal_penerimaan' => 'required|date',
-            'tanggal_kadaluarsa' => 'required|date'
+            'permintaan_id'      => 'required|exists:permintaans,id',
+            'kode_penerimaan'    => 'required',
+            'pemasok'            => 'required',
+            'dosis'              => 'required',
+            'stok_awal'          => 'required|numeric',
+            'jumlah_diterima'    => 'required|numeric',
+            'tanggal_diterima'   => 'required|date',
+            'peruntukan_bulan'   => 'required',
+            'tanggal_kadaluarsa' => 'required|date',
         ]);
 
         Penerimaan::create([
-            'permintaan_id' => $request->permintaan_id,
-            'jumlah_diterima' => $request->jumlah_diterima,
-            'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'permintaan_id'      => $request->permintaan_id,
+            'kode_penerimaan'    => $request->kode_penerimaan,
+            'pemasok'            => $request->pemasok,
+            'dosis_obat'         => $request->dosis,
+            'stok_awal'          => $request->stok_awal,
+            'jumlah_diterima'    => $request->jumlah_diterima,
+            'tanggal_diterima'   => $request->tanggal_diterima,
+            'peruntukan_bulan'   => $request->peruntukan_bulan,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
-            'keterangan' => $request->keterangan
+            'catatan'            => $request->catatan,
         ]);
 
-        return redirect('/penerimaan')
+        return redirect()
+            ->route('input.index')
             ->with('success', 'Data penerimaan berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $penerimaan = Penerimaan::findOrFail($id);
+        $permintaan = Permintaan::with('obat')->get();
 
-        $permintaan = Permintaan::all();
-
-        return view('penerimaan.edit', compact('penerimaan', 'permintaan'));
+        return view('penerimaan.edit', compact(
+            'penerimaan',
+            'permintaan'
+        ));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'permintaan_id' => 'required',
-            'jumlah_diterima' => 'required|numeric',
-            'tanggal_penerimaan' => 'required|date',
-            'tanggal_kadaluarsa' => 'required|date'
+            'permintaan_id'      => 'required|exists:permintaans,id',
+            'kode_penerimaan'    => 'required',
+            'pemasok'            => 'required',
+            'dosis'              => 'required',
+            'stok_awal'          => 'required|numeric',
+            'jumlah_diterima'    => 'required|numeric',
+            'tanggal_diterima'   => 'required|date',
+            'peruntukan_bulan'   => 'required',
+            'tanggal_kadaluarsa' => 'required|date',
         ]);
 
         $penerimaan = Penerimaan::findOrFail($id);
 
         $penerimaan->update([
-            'permintaan_id' => $request->permintaan_id,
-            'jumlah_diterima' => $request->jumlah_diterima,
-            'tanggal_penerimaan' => $request->tanggal_penerimaan,
+            'permintaan_id'      => $request->permintaan_id,
+            'kode_penerimaan'    => $request->kode_penerimaan,
+            'pemasok'            => $request->pemasok,
+            'dosis_obat'         => $request->dosis,
+            'stok_awal'          => $request->stok_awal,
+            'jumlah_diterima'    => $request->jumlah_diterima,
+            'tanggal_diterima'   => $request->tanggal_diterima,
+            'peruntukan_bulan'   => $request->peruntukan_bulan,
             'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
-            'keterangan' => $request->keterangan
+            'catatan'            => $request->catatan,
         ]);
 
-        return redirect('/penerimaan')
+        return redirect()
+            ->route('input.index')
             ->with('success', 'Data penerimaan berhasil diupdate');
     }
 
@@ -81,7 +103,8 @@ class PenerimaanController extends Controller
 
         $penerimaan->delete();
 
-        return redirect('/penerimaan')
+        return redirect()
+            ->route('input.index')
             ->with('success', 'Data penerimaan berhasil dihapus');
     }
 }

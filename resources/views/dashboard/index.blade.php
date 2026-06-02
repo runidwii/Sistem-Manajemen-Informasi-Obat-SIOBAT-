@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Beranda')
 @section('content')
-
-<!-- CARD -->
 <div class="main">
-
      <div class="card-box">
         <div class="stat-card dsblue">
             <div class="icon-box">
