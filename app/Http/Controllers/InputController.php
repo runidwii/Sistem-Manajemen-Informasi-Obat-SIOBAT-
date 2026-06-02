@@ -27,7 +27,8 @@ class InputController extends Controller
                 'jenis' => 'Permintaan',
                 'jumlah' => $item->jumlah_permintaan,
                 'tanggal' => $item->tanggal_permintaan,
-                'pemasok' => $item->keterangan
+                'pemasok' => $item->keterangan,
+                'keterangan' => $item->supplier
             ];
         });
 
