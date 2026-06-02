@@ -31,8 +31,11 @@ class PemakaianController extends Controller
             'tanggal_pemakaian' => 'required|date'
         ]);
 
+        $obat = Obat::findOrFail($request->obat_id);
+
         Pemakaian::create([
             'id_resep' => $request->id_resep,
+            'nama_obat' => $obat->nama_obat,
             'obat_id' => $request->obat_id,
             'jumlah_pemakaian' => $request->jumlah_pemakaian,
             'tanggal_pemakaian' => $request->tanggal_pemakaian
@@ -61,9 +64,12 @@ class PemakaianController extends Controller
         ]);
 
         $pemakaian = Pemakaian::findOrFail($id);
+        
+        $obat = Obat::findOrFail($request->obat_id);
 
         $pemakaian->update([
             'id_resep' => $request->id_resep,
+            'nama_obat' => $obat->nama_obat,
             'obat_id' => $request->obat_id,
             'jumlah_pemakaian' => $request->jumlah_pemakaian,
             'tanggal_pemakaian' => $request->tanggal_pemakaian

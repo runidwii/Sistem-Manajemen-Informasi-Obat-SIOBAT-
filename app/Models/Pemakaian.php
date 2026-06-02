@@ -8,6 +8,7 @@ class Pemakaian extends Model
 {
     protected $fillable = [
         'id_resep',
+        'nama_obat',
         'obat_id',
         'jumlah_pemakaian',
         'tanggal_pemakaian'

@@ -8,32 +8,24 @@
         <h2>Tambah Status Persediaan</h2>
     </div>
 
-    <form action="{{ route('persediaan.store') }}" method="POST">
-
+    <form action="{{ route('statuspersediaan.store') }}" method="POST">
         @csrf
 
         <div class="form-grid">
 
             <div class="form-group">
-
-                <label>Nama Obat</label>
+                <label>Penerimaan</label>
 
                 <div class="select-wrapper">
-
                     <select name="obat_id" required>
-
                         <option value="">
                             Pilih Obat
                         </option>
 
                         @foreach($obat as $item)
-
                         <option value="{{ $item->id }}">
-                            {{ $item->nama_obat }}
-                            -
-                            {{ $item->dosis }}
+                            {{ $item->nama_obat }} - {{ $item->dosis }}
                         </option>
-
                         @endforeach
 
                     </select>
@@ -41,45 +33,49 @@
                     <span class="material-icons-round select-icon">
                         expand_more
                     </span>
-
                 </div>
-
             </div>
 
             <div class="form-group">
-
-                <label>Stok</label>
+                <label>Stok Terkini</label>
 
                 <input type="number"
                        name="stok_terkini"
-                       placeholder="Masukkan jumlah stok">
-
+                       placeholder="Masukkan stok terkini"
+                       required>
             </div>
 
             <div class="form-group">
-
                 <label>Minimal Stok</label>
 
                 <input type="number"
                        name="minimal_stok"
-                       placeholder="Masukkan minimal stok">
-
+                       placeholder="Masukkan minimal stok"
+                       required>
             </div>
 
             <div class="form-group">
+                <label>Status Persediaan</label>
 
-                <label>Tanggal</label>
+                <div class="select-wrapper">
+                    <select name="status_persediaan" required>
+                        <option value="">Pilih Status</option>
+                        <option value="Memadai">Memadai</option>
+                        <option value="Sedikit">Sedikit</option>
+                        <option value="Darurat">Darurat</option>
+                    </select>
 
-                <input type="date"
-                       name="tanggal">
-
+                    <span class="material-icons-round select-icon">
+                        expand_more
+                    </span>
+                </div>
             </div>
 
         </div>
 
         <div class="form-action">
 
-            <a href="/persediaan" class="btn-batal">
+            <a href="{{ route('statuspersediaan.index') }}" class="btn-batal">
                 Batal
             </a>
 

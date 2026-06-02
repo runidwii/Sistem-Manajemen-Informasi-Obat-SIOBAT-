@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persediaan;
+use App\Models\Statuspersediaan;
 use App\Models\Obat;
 use Illuminate\Http\Request;
 
@@ -14,12 +15,13 @@ class PersediaanController extends Controller
 
         return view('persediaan.index', compact('persediaan'));
     }
-
+    
     public function create()
     {
         $obat = Obat::all();
-
+        
         return view('statuspersediaan.create', compact('obat'));
+        
     }
 
     public function store(Request $request)

@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PersediaanObatController;
 use App\Http\Controllers\PemantauanPermintaanController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\StatuspersediaanController;
 use App\Models\Persediaan;
 
 Route::resource('obat', ObatController::class);
@@ -54,18 +55,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/status-persediaan', function () {
-    $persediaan = Persediaan::with('obat')->get();
+Route::get('/status-persediaan', [StatuspersediaanController::class, 'index'])
+    ->name('statuspersediaan.index');
 
-    return view('statuspersediaan.index', compact('persediaan'));
-})->name('statuspersediaan.index');    
+Route::get('/status-persediaan/create', [StatuspersediaanController::class, 'create'])
+    ->name('statuspersediaan.create');
 
-Route::get('/status-persediaan/create', function () {
-    $obat = Obat::all();
-
-    return view('statuspersediaan.create', compact('obat'));
-})->name('statuspersediaan.create');
-
+Route::post('/status-persediaan', [StatuspersediaanController::class, 'store'])
+    ->name('statuspersediaan.store');
 
 Route::get('/', function () {
     return view('welcome');

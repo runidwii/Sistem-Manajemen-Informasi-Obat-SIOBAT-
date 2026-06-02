@@ -15,6 +15,16 @@
                 <input type="text" placeholder="Cari data pemakaian...">
             </div>
 
+            <a href="{{ route('pemakaian.create') }}" class="btn-tambah">
+
+                <span class="material-icons-round">
+                    add
+                </span>
+
+                Tambah Pemakaian
+
+            </a>
+
         </div>
 
     </div>
@@ -27,8 +37,8 @@
 
                 <tr>
                     <th>No</th>
-                    <th>ID Resep</th>
-                    <th>ID Obat</th>
+                    <th>Kode Resep</th>
+                    <th>Nama Obat</th>
                     <th>Jumlah Pemakaian</th>
                     <th>Tanggal Pemakaian</th>
                     <th>Aksi</th>
@@ -46,14 +56,13 @@
 
                     <td>{{ $item->id_resep }}</td>
 
-                    <td>{{ $item->obat_id }}</td>
+                    {{-- DIUBAH --}}
+                    <td>{{ $item->obat->nama_obat ?? '-' }}</td>
 
                     <td>
-
                         <span class="badge biru">
                             {{ $item->jumlah_pemakaian }}
                         </span>
-
                     </td>
 
                     <td>{{ $item->tanggal_pemakaian }}</td>
@@ -63,27 +72,21 @@
                         <div class="aksi-table">
 
                             <button class="btn-view">
-
                                 <span class="material-icons-round">
                                     visibility
                                 </span>
-
                             </button>
 
                             <button class="btn-edit">
-
                                 <span class="material-icons-round">
                                     edit
                                 </span>
-
                             </button>
 
                             <button class="btn-hapus">
-
                                 <span class="material-icons-round">
                                     delete
                                 </span>
-
                             </button>
 
                         </div>

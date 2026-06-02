@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Persediaan;
+use App\Models\Obat;
+use Illuminate\Http\Request;
+
+class StatuspersediaanController extends Controller
+{
+    // 📄 TAMPILKAN DATA (TABEL STATUS PERSEDIAAN)
+    public function index()
+    {
+        $persediaan = Persediaan::with('obat')->get();
+
+        return view('statuspersediaan.index', compact('persediaan'));
+    }
+
+    // ➕ FORM TAMBAH DATA
+    public function create()
+    {
+        $obat = Obat::all();
+
+        return view('statuspersediaan.create', compact('obat'));
+    }
+
+    // 💾 SIMPAN DATA
+    public function store(Request $request)
+    {
+        $request->validate([
+            'obat_id' => 'required',
+            'stok_terkini' => 'required|integer',
+            'minimal_stok' => 'required|integer',
+            'status_persediaan' => 'required',
+        ]);
+
+        Persediaan::create([
+            'obat_id' => $request->obat_id,
+            'stok_terkini' => $request->stok_terkini,
+            'minimal_stok' => $request->minimal_stok,
+            'status_persediaan' => $request->status_persediaan,
+        ]);
+
+        return redirect()->route('persediaan.index')
+            ->with('success', 'Data berhasil ditambahkan');
+    }
+
+    // 👁 OPTIONAL: DETAIL DATA
+    public function show($id)
+    {
+        $persediaan = Persediaan::with('obat')->findOrFail($id);
+
+        return view('statuspersediaan.show', compact('persediaan'));
+    }
+
+    // ✏ OPTIONAL: EDIT
+    public function edit($id)
+    {
+        $persediaan = Persediaan::findOrFail($id);
+        $obat = Obat::all();
+
+        return view('statuspersediaan.edit', compact('persediaan', 'obat'));
+    }
+
+    // 🔄 UPDATE DATA
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'obat_id' => 'required',
+            'stok_terkini' => 'required|integer',
+            'minimal_stok' => 'required|integer',
+            'status_persediaan' => 'required',
+        ]);
+
+        $persediaan = Persediaan::findOrFail($id);
+
+        $persediaan->update([
+            'obat_id' => $request->obat_id,
+            'stok_terkini' => $request->stok_terkini,
+            'minimal_stok' => $request->minimal_stok,
+            'status_persediaan' => $request->status_persediaan,
+        ]);
+
+        return redirect()->route('persediaan.index')
+            ->with('success', 'Data berhasil diupdate');
+    }
+
+    // 🗑 HAPUS DATA
+    public function destroy($id)
+    {
+        $persediaan = Persediaan::findOrFail($id);
+        $persediaan->delete();
+
+        return redirect()->route('persediaan.index')
+            ->with('success', 'Data berhasil dihapus');
+    }
+}
