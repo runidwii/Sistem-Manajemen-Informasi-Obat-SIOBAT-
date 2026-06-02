@@ -39,7 +39,10 @@ class InputController extends Controller
                 'jenis' => 'Penerimaan',
                 'jumlah' => $item->jumlah_diterima,
                 'tanggal' => $item->tanggal_diterima,
-                'pemasok' => $item->pemasok
+                'pemasok' => $item->pemasok,
+                'jumlah' => $item->jumlah_penerimaan,
+                'tanggal' => $item->tanggal_penerimaan,
+                'keterangan' => $item->keterangan
             ];
         });
 

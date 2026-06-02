@@ -18,7 +18,7 @@
             </div>
     </div>
 
-    <div class="input-card green">
+    <a href="{{ route('penerimaan.create') }}" class="input-card green">
         <div class="input-kiri">
             <div class="icon-input">
                 <span class="material-icons-round">archive</span>
@@ -32,6 +32,7 @@
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
+    </a>
     </div>
 
     <a href="{{ route('relokasi.create') }}" class="input-card purple">
