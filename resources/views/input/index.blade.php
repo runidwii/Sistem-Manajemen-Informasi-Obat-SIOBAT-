@@ -161,23 +161,26 @@
 
             <div class="aksi-table">
 
-                <button class="btn-view">
+                <a href="{{ $item['url'] }}" class="btn-view">
                     <span class="material-icons-round">
                         visibility
                     </span>
-                </button>
+                </a>
 
-                <button class="btn-edit">
+                <a href="{{ $item['edit_url'] }}" class="btn-edit">
                     <span class="material-icons-round">
                         edit
                     </span>
-                </button>
+                </a>
 
-                <button class="btn-hapus">
-                    <span class="material-icons-round">
-                        delete
-                    </span>
-                </button>
+                <form action="{{ $item['delete_url'] }}" method="POST" class="delete-form" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn-hapus">
+                        <span class="material-icons-round">delete</span>
+                    </button>
+                </form>
 
             </div>
 
@@ -200,4 +203,37 @@
     </div>
 
 </div>
+
+<script>
+document.querySelectorAll('.delete-form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+});
+
+@if (session('success'))
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ session('success') }}',
+    timer: 3000,
+    showConfirmButton: false
+});
+@endif
+</script>
 @endsection

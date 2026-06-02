@@ -39,7 +39,7 @@ class InputController extends Controller
                 'jenis' => 'Penerimaan',
                 'jumlah' => $item->jumlah_diterima,
                 'tanggal' => $item->tanggal_diterima,
-                'pemasok' => $item->keterangan
+                'pemasok' => $item->pemasok
             ];
         });
 
@@ -51,7 +51,10 @@ class InputController extends Controller
                 'jenis' => 'Relokasi',
                 'jumlah' => $item->jumlah_relokasi,
                 'tanggal' => $item->tanggal_relokasi,
-                'pemasok' => $item->asal
+                'pemasok' => $item->asal,
+                'url' => route('relokasi.show', $item->id),
+                'edit_url' => route('relokasi.edit', $item->id),
+                'delete_url' => route('relokasi.destroy', $item->id)
             ];
         });
 

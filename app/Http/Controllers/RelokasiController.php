@@ -90,4 +90,12 @@ class RelokasiController extends Controller
         return redirect()->route('input.index')
             ->with('success', 'Data relokasi berhasil dihapus');
     }
+
+    public function show($id)
+    {
+        $relokasi = Relokasi::with('obat')
+                        ->findOrFail($id);
+
+        return view('relokasi.show', compact('relokasi'));
+    }
 }
