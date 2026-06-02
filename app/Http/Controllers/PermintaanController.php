@@ -6,6 +6,7 @@ use App\Models\Permintaan;
 use App\Models\Obat;
 use Illuminate\Http\Request;
 
+        
 class PermintaanController extends Controller
 {
     public function index()
@@ -28,20 +29,21 @@ class PermintaanController extends Controller
             'obat_id' => 'required',
             'jumlah_permintaan' => 'required|numeric',
             'tanggal_permintaan' => 'required|date',
-            'peruntukan_bulan' => 'required',
-            'status_permintaan' => 'required'
+            'peruntukan_bulan' => 'required'
         ]);
 
         Permintaan::create([
+            'kode_permintaan' => $request->kode_permintaan,
             'obat_id' => $request->obat_id,
             'jumlah_permintaan' => $request->jumlah_permintaan,
             'tanggal_permintaan' => $request->tanggal_permintaan,
+            'stok_awal' => $request->stok_awal,
             'peruntukan_bulan' => $request->peruntukan_bulan,
-            'keterangan' => $request->keterangan,
-            'status_permintaan' => $request->status_permintaan
-        ]);
+            'supplier' => $request->supplier,
+            'keterangan' => $request->catatan
+]);
 
-        return redirect('/permintaan')
+        return redirect('/input')
             ->with('success', 'Data permintaan berhasil ditambahkan');
     }
 
@@ -60,8 +62,7 @@ class PermintaanController extends Controller
             'obat_id' => 'required',
             'jumlah_permintaan' => 'required|numeric',
             'tanggal_permintaan' => 'required|date',
-            'peruntukan_bulan' => 'required',
-            'status_permintaan' => 'required'
+            'peruntukan_bulan' => 'required'
         ]);
 
         $permintaan = Permintaan::findOrFail($id);
@@ -71,11 +72,10 @@ class PermintaanController extends Controller
             'jumlah_permintaan' => $request->jumlah_permintaan,
             'tanggal_permintaan' => $request->tanggal_permintaan,
             'peruntukan_bulan' => $request->peruntukan_bulan,
-            'keterangan' => $request->keterangan,
-            'status_permintaan' => $request->status_permintaan
+            'keterangan' => $request->keterangan
         ]);
 
-        return redirect('/permintaan')
+        return redirect('/input')
             ->with('success', 'Data permintaan berhasil diupdate');
     }
 
@@ -85,7 +85,7 @@ class PermintaanController extends Controller
 
         $permintaan->delete();
 
-        return redirect('/permintaan')
+        return redirect('/input')
             ->with('success', 'Data permintaan berhasil dihapus');
     }
 }
