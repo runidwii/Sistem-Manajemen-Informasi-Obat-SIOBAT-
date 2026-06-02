@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Input Data')
+@section('title', 'Data Relokasi Obat')
 @section('content')
 
 <div class="form-card">
@@ -11,12 +11,10 @@
     <form action="{{ route('relokasi.store') }}" method="POST">
 
         @csrf
-
         <div class="form-grid">
-
             <div class="form-group">
                 <label>Nama Obat</label>
-
+                
                 <div class="select-wrapper">
                     <select name="obat_id" required>
                         <option value="">

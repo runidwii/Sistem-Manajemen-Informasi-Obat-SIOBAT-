@@ -79,7 +79,7 @@
 }
 
 .btn-batal{
-    background: #e54545;
+    background: #dc2626;
     font-size: 16px;
     font-weight: 600;
     color: white;
@@ -92,7 +92,7 @@
 }
 
 .btn-batal:hover{
-    background: #e41313;
+    background: #b80202;
 }
 
 /* CARD */

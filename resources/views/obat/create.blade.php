@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Obat')
+@section('title', 'TambahData Obat')
 @section('content')
 <div class="form-card">
     <div class="form-header">

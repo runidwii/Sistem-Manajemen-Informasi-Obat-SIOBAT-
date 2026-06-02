@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Data Obat')
 @section('content')
-<div class="page-header">
+<div class="judul">
     <div>
         <h1>Data Obat</h1>
         <p>Daftar seluruh data obat</p>
