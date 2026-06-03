@@ -105,7 +105,6 @@
                     </div>
                 </div>
                 
-                {{-- Kode Obat }}
                 <div class="field-group">
                     <label class="field-label">Kode Obat</label>
                     <div class="field-select-wrap">
