@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalObat = Obat::count();
+        $totalObat = Persediaan::sum('stok_terkini');
 
         $stokMenipis = Persediaan::whereColumn(
             'stok_terkini',
