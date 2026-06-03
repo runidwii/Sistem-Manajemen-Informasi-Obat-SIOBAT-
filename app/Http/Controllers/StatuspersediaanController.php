@@ -97,7 +97,7 @@ class StatuspersediaanController extends Controller
         $persediaan = Persediaan::findOrFail($id);
         $persediaan->delete();
 
-        return redirect()->route('persediaan.index')
+        return redirect()->route('statuspersediaan.index')
             ->with('success', 'Data berhasil dihapus');
     }
 }

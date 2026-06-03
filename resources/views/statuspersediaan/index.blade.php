@@ -180,10 +180,8 @@ document.querySelectorAll('.delete-form').forEach(form => {
 
 });
 
-</script>
-
 @if(session('success'))
-<script>
+
 Swal.fire({
     icon: 'success',
     title: 'Berhasil',
@@ -191,8 +189,8 @@ Swal.fire({
     timer: 3000,
     showConfirmButton: false
 });
-</script>
-
 @endif
+
+</script>
 
 @endsection

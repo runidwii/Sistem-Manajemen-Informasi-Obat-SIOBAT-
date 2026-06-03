@@ -48,9 +48,9 @@ class PemakaianController extends Controller
     public function edit($id)
     {
         $pemakaian = Pemakaian::findOrFail($id);
-
+        
         $obat = Obat::all();
-
+        
         return view('pemakaian.edit', compact('pemakaian', 'obat'));
     }
 
@@ -78,6 +78,13 @@ class PemakaianController extends Controller
         return redirect('/pemakaian')
             ->with('success', 'Data pemakaian berhasil diupdate');
     }
+
+    public function show($id)
+{
+    $pemakaian = Pemakaian::with('obat')->findOrFail($id);
+
+    return view('pemakaian.show', compact('pemakaian'));
+}
 
     public function destroy($id)
     {
