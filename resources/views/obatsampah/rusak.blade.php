@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Obat Sampah')
 @section('content')
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-
+  
     {{-- ── Tabel Obat Rusak ── --}}
     <div class="table-container">
         <table class="sampah-table">
@@ -45,21 +45,21 @@
                     <th><span class="th-inner">Kode Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
                     <th><span class="th-inner">Nama Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
                     <th><span class="th-inner">Jumlah Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
-                    <th><span class="th-inner">Tanggal Teridentifikasi <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Tanggal Rusak <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
                     <th><span class="th-inner">Peruntukan Bulan <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
-                    <th><span class="th-inner">Kode Masuk Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
+                    <th><span class="th-inner">Cara Masuk Obat <span class="material-symbols-outlined sort-icon">unfold_more</span></span></th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($obatRusak as $index => $item)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $item['kode_obat'] }}</td>
+                    <td>{{ $item->obat->kode_obat ?? '-' }}</td>
                     <td>{{ $item['nama_obat'] }}</td>
                     <td>{{ $item['jumlah_obat'] }}</td>
-                    <td>{{ $item['tanggal_teridentifikasi'] }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item['tanggal'])->format('d/m/Y') }}</td>
                     <td>{{ $item['peruntukan_bulan'] }}</td>
-                    <td>{{ $item['kode_masuk_obat'] }}</td>
+                    <td>{{ $item['cara_masuk_obat'] }}</td>
                 </tr>
                 @empty
                 <tr>
@@ -72,7 +72,7 @@
 
 </div>
 
-{{-- ── STRUKTUR POP UP MODAL (Class disesuaikan dengan isi CSS kamu) ── --}}
+{{-- ── POP UP OBAT RUSAK ── --}}
 <div id="customObatRusakModal" class="modal-overlay">
     <div class="modal-box">
         <button type="button" id="closeModalBtn" class="modal-close-x">
@@ -84,24 +84,35 @@
             <p class="form-subtitle">Masukkan detail obat rusak</p>
         </div>
 
-        <form action="{{ route('obatrusak.create') }}" method="POST">
-            @csrf
+        <form action="{{ route('obatrusak.store') }}" method="POST">
+            @csrf         
             <input type="hidden" name="jenis" value="Rusak">
 
-            {{-- Baris 1: Kode Masuk Obat | Kode Obat | Nama Obat --}}
-            <div class="field-grid">
+            {{-- Baris 1: Cara Masuk | Kode Obat | Nama Obat --}}
+            <div class="field-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px;">
+                
+                {{-- Cara Masuk --}}
                 <div class="field-group">
-                    <label class="field-label">Kode Masuk Obat</label>
-                    <input type="text" name="kode_masuk_obat" id="kodemasukRusak" class="field-input" placeholder="T****05" readonly>
+                    <label class="field-label">Cara Masuk Obat</label>
+                    <div class="field-select-wrap">
+                        <select name="cara_masuk_obat" class="field-select" required>
+                            <option value="" disabled selected>Pilih Cara Masuk</option>
+                            <option value="Penerimaan">Penerimaan</option>
+                            <option value="Permintaan">Permintaan</option>
+                            <option value="Relokasi">Relokasi</option>
+                        </select>
+                        <span class="material-icons field-select-icon">expand_more</span>
+                    </div>
                 </div>
-
+                
+                {{-- Kode Obat }}
                 <div class="field-group">
                     <label class="field-label">Kode Obat</label>
                     <div class="field-select-wrap">
-                        <select name="obat_id" id="selectObatRusak" class="field-select">
+                        <select name="kode_obat" id="selectObatRusak" class="field-select" required>
                             <option value="" disabled selected>Pilih</option>
                             @foreach($obat as $o)
-                            <option value="{{ $o->id }}" data-nama="{{ $o->nama_obat }}" data-kodemasuk="{{ $o->kode_masuk ?? '' }}">
+                            <option value="{{ $o->kode_obat }}" data-nama="{{ $o->nama_obat }}">
                                 {{ $o->kode_obat }}
                             </option>
                             @endforeach
@@ -110,23 +121,24 @@
                     </div>
                 </div>
 
+                {{-- Nama Obat --}}
                 <div class="field-group">
                     <label class="field-label">Nama Obat</label>
-                    <input type="text" name="nama_obat" id="namaObatRusak" class="field-input" placeholder="Pilih Nama Obat" readonly>
+                    <input type="text" name="nama_obat" id="namaObatRusak" class="field-input" placeholder="Pilih Nama Obat" readonly required>
                 </div>
             </div>
 
             {{-- Baris 2: Jumlah Obat | Peruntukan Bulan | Tanggal Teridentifikasi --}}
-            <div class="field-grid">
+            <div class="field-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px;">
                 <div class="field-group">
                     <label class="field-label">Jumlah Obat</label>
-                    <input type="number" name="jumlah_sampah" class="field-input" placeholder="Otomatis Terisi" min="1">
+                    <input type="number" name="jumlah_obat" class="field-input" placeholder="Jumlah" min="1" required>
                 </div>
 
                 <div class="field-group">
                     <label class="field-label">Peruntukan Bulan</label>
                     <div class="field-select-wrap">
-                        <select name="peruntukan_bulan" class="field-select">
+                        <select name="peruntukan_bulan" class="field-select" required>
                             <option value="" disabled selected>Pilih Bulan</option>
                             @foreach(['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'] as $bulan)
                             <option value="{{ $bulan }}" {{ $bulan === 'Agustus' ? 'selected' : '' }}>{{ $bulan }}</option>
@@ -139,16 +151,17 @@
                 <div class="field-group">
                     <label class="field-label">Tanggal Teridentifikasi</label>
                     <div class="field-date-wrap">
-                        <input type="date" name="tanggal_dibuang" class="field-input">
+
+                        <input type="date" name="tanggal_teridentifikasi" class="field-input" required>
                         <span class="material-icons field-date-icon">calendar_month</span>
                     </div>
                 </div>
             </div>
 
             {{-- Catatan --}}
-            <div class="field-group field-group--full">
+            <div class="field-group field-group--full" style="margin-bottom: 20px;">
                 <label class="field-label">Catatan</label>
-                <textarea name="keterangan" class="field-textarea" rows="4"></textarea>
+                <textarea name="keterangan" class="field-textarea" rows="4" placeholder="Tambahkan catatan jika ada..."></textarea>
             </div>
 
             {{-- Tombol Aksi --}}
@@ -171,12 +184,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (openBtn && modal) {
         openBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            modal.classList.add('active'); // Menambah class active agar modal pop-up muncul melayang
+            modal.classList.add('active'); 
         });
     }
 
     function closeModal() {
-        modal.classList.remove('active'); // Menghapus class active untuk menyembunyikan modal
+        modal.classList.remove('active'); 
     }
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -186,16 +199,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target === modal) closeModal();
     });
 
-    // Auto-fill dari dropdown select
     const select = document.getElementById('selectObatRusak');
     const namaObat = document.getElementById('namaObatRusak');
-    const kodeMasuk = document.getElementById('kodemasukRusak');
 
     if (select) {
         select.addEventListener('change', function () {
             const opt = select.options[select.selectedIndex];
             namaObat.value = opt.dataset.nama ?? '';
-            kodeMasuk.value = opt.dataset.kodemasuk ?? '';
         });
     }
 });

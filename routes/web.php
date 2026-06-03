@@ -26,12 +26,12 @@ Route::get('/obatsampah', [ObatsampahController::class, 'index'])
     ->name('obatsampah.index');
 Route::get('/obatsampah/rusak', [ObatsampahController::class, 'rusak'])
     ->name('obatrusak.index');
-Route::get('/obatsampah/rusak/create', [ObatsampahController::class, 'rusakCreate'])
-    ->name('obatrusak.create');
 Route::get('/obatsampah/kadaluwarsa', [ObatsampahController::class, 'kadaluwarsa'])
     ->name('obatkadaluwarsa.index');
-Route::get('/obatsampah/kadaluwarsa/create', [ObatsampahController::class, 'kadaluwarsaCreate'])
-    ->name('obatkadaluwarsa.create');
+Route::post('/obatsampah/kadaluwarsa/store', [ObatsampahController::class, 'storeKadaluwarsa'])
+    ->name('obatkadaluwarsa.store');
+Route::post('/obatsampah/rusak/store', [ObatsampahController::class, 'storeRusak'])
+    ->name('obatrusak.store');
 
 Route::resource('pemakaian', PemakaianController::class);
 Route::resource('persediaan', PersediaanController::class);

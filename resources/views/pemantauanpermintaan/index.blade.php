@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Pemantauan Permintaan')
 @section('content')
 
 {{-- Link Google Icons --}}
