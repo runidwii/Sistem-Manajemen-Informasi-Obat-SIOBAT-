@@ -14,7 +14,7 @@
     <div class="pemantauan-header">
 
         {{-- Tombol kembali --}}
-        <a href="{{ route('persediaanobat.index') }}" class="btn-back">
+        <a href="{{ route('persediaan.index') }}" class="btn-back">
             <span class="material-symbols-outlined">arrow_back</span>
             Pemantauan Permintaan
         </a>

@@ -22,8 +22,17 @@ class Permintaan extends Model
         'keterangan'
     ];
 
+    protected $casts = [
+        'tanggal_permintaan' => 'date',
+    ];
+
     public function obat()
     {
-        return $this->belongsTo(Obat::class);
+        return $this->belongsTo(Obat::class, 'obat_id');
     }
-}   
+
+    public function penerimaan()
+    {
+        return $this->hasOne(Penerimaan::class, 'permintaan_id');
+    }
+}
