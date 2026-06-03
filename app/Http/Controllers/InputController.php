@@ -11,15 +11,12 @@ class InputController extends Controller
 {
     public function index(Request $request)
     {
-        // TOTAL CARD
         $totalPermintaan = Permintaan::count();
         $totalPenerimaan = Penerimaan::count();
         $totalRelokasi = Relokasi::count();
 
-        // RIWAYAT GABUNGAN
         $riwayat = collect();
 
-        // PERMINTAAN
         $permintaan = Permintaan::with('obat')->get()->map(function ($item) {
             return [
                 'id' => $item->id,
@@ -34,7 +31,6 @@ class InputController extends Controller
             ];
         });
 
-        // PENERIMAAN
         $penerimaan = Penerimaan::with('permintaan.obat')->get()->map(function ($item) {
             return [
                 'id' => $item->id,
@@ -49,7 +45,6 @@ class InputController extends Controller
             ];
         });
 
-        // RELOKASI
         $relokasi = Relokasi::with('obat')->get()->map(function ($item) {
             return [
                 'id' => $item->id,
@@ -65,10 +60,32 @@ class InputController extends Controller
         });
 
         $riwayat = $riwayat
-            ->merge($permintaan)
-            ->merge($penerimaan)
-            ->merge($relokasi)
-            ->sortByDesc('tanggal');
+        ->merge($permintaan)
+        ->merge($penerimaan)
+        ->merge($relokasi);
+
+        if ($request->filled('search')) {
+
+            $search = strtolower($request->search);
+
+            $riwayat = $riwayat->filter(function ($item) use ($search) {
+                return str_contains(
+                    strtolower($item['nama_obat']),
+                    $search
+                );
+            });
+        }
+
+        if ($request->filled('jenis')) {
+
+            $riwayat = $riwayat->filter(function ($item) use ($request) {
+                return $item['jenis'] === $request->jenis;
+            });
+
+        }
+
+
+        $riwayat = $riwayat->sortByDesc('tanggal');
 
         return view('input.index', compact(
             'totalPermintaan',

@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="mt-5 text-right">
-                    <a href="/permintaan"
+                    <a href="{{ route('pemantauanpermintaan.index') }}"
                         class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-900 font-bold text-sm">Lihat Detail
                         <span class="material-icons-round text-base">
                             arrow_forward

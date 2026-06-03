@@ -93,20 +93,42 @@
 <div class="riwayat-card">
     <div class="riwayat-header">
         <h2>Riwayat Input Data</h2>
-        <div class="riwayat-kanan">
-            <div class="search-box">
-                <span class="material-icons-round">search</span>
-                <input type="text" placeholder="Cari data...">
-            </div>
-            <div class="filter-box">
-                <select>
-                    <option>Semua Jenis</option>
-                    <option>Permintaan</option>
-                    <option>Penerimaan</option>
-                    <option>Relokasi</option>
-                </select>
-            </div>
-        </div>
+        <form method="GET" action="{{ route('input.index') }}" class="riwayat-kanan">
+
+    <div class="search-box">
+        <span class="material-icons-round">search</span>
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Cari data..."
+            value="{{ request('search') }}"
+        >
+    </div>
+
+    <div class="filter-box">
+        <select name="jenis" onchange="this.form.submit()">
+            <option value="">Semua Jenis</option>
+
+            <option value="Permintaan"
+                {{ request('jenis') == 'Permintaan' ? 'selected' : '' }}>
+                Permintaan
+            </option>
+
+            <option value="Penerimaan"
+                {{ request('jenis') == 'Penerimaan' ? 'selected' : '' }}>
+                Penerimaan
+            </option>
+
+            <option value="Relokasi"
+                {{ request('jenis') == 'Relokasi' ? 'selected' : '' }}>
+                Relokasi
+            </option>
+
+        </select>
+    </div>
+
+</form>
     </div>
 
     <div class="table-wrapper">
