@@ -22,7 +22,7 @@
                 <label>Kode Permintaan</label>
                 <input type="text"
                     name="kode_permintaan"
-                    placeholder="Kode Permintaan"
+                    placeholder="PTR001"
                     value="{{ $kode_permintaan ?? '' }}">
             </div>
 

@@ -20,7 +20,7 @@
                 <label>Kode Penerimaan</label>
                 <input type="text"
                     name="kode_penerimaan"
-                    placeholder="TRX001">
+                    placeholder="PNR001">
             </div>
 
             <div class="form-group">
