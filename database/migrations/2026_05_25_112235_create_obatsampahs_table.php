@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('obat_sampahs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade');
-            $table->integer('jumlah_sampah');
-            $table->date('tanggal_dibuang');
+            $table->integer('jumlah_obat');
+            $table->string('nama_obat');
+            $table->date('tanggal');
             $table->enum('peruntukan_bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
             $table->enum('jenis', ['Kadaluarsa', 'Rusak']);
             $table->text('keterangan')->nullable();
