@@ -28,32 +28,20 @@
 
                 <div class="select-wrapper">
                     <select name="permintaan_id" required>
-    <option value="">Pilih Permintaan</option>
+                        <option value="">Pilih Permintaan</option>
 
-    @foreach($permintaan as $item)
-        <option value="{{ $item->id }}">
-            {{ $item->obat->nama_obat }}
-            - {{ $item->jumlah_permintaan }}
-        </option>
-    @endforeach
-</select>
+                        @foreach($permintaan as $item)
+                            <option value="{{ $item->id }}">
+                                {{ $item->obat->nama_obat }}
+                                - {{ $item->jumlah_permintaan }}
+                            </option>
+                        @endforeach
+                    </select>
 
                     <span class="material-icons-round select-icon">
                         expand_more
                     </span>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label>Jenis Obat</label>
-
-                <select name="jenis_obat" required>
-                    <option value="">Pilih</option>
-                    <option>Tablet</option>
-                    <option>Kapsul</option>
-                    <option>Sirup</option>
-                    <option>Salep</option>
-                </select>
             </div>
 
             <div class="form-group">
@@ -83,37 +71,37 @@
                     name="peruntukan_bulan">
             </div>
 
-            <div class="form-group">
-                <label>Tanggal Kadaluarsa</label>
-                <input type="date"
-                    name="tanggal_kadaluarsa">
+            <div class="tiga">
+                <div class="form-group">
+                    <label>Tanggal Kadaluarsa</label>
+                    <input type="date"
+                        name="tanggal_kadaluarsa">
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal Penerimaan</label>
+                    <input type="date"
+                        name="tanggal_diterima">
+                </div>
+
+                <div class="form-group">
+                    <label>Pemasok</label>
+                    <input type="text"
+                        name="pemasok"
+                        placeholder="Contoh: Dinas Kesehatan">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Tanggal Penerimaan</label>
-                <input type="date"
-                    name="tanggal_diterima">
+            <div class="form-group full">
+                <label>Catatan</label>
+
+                <textarea name="catatan"
+                    rows="4"
+                    placeholder="Masukkan catatan"></textarea>
             </div>
-
-            <div class="form-group">
-                <label>Pemasok</label>
-                <input type="text"
-                    name="pemasok"
-                    placeholder="Contoh: Dinas Kesehatan">
-            </div>
-
-        </div>
-
-        <div class="form-group full">
-            <label>Catatan</label>
-
-            <textarea name="catatan"
-                rows="4"
-                placeholder="Masukkan catatan"></textarea>
         </div>
 
         <div class="form-action">
-
             <a href="/input" class="btn-batal">
                 Batal
             </a>
@@ -121,11 +109,8 @@
             <button type="submit" class="btn-simpan">
                 Simpan Data
             </button>
-
         </div>
-
     </form>
-
 </div>
 
 

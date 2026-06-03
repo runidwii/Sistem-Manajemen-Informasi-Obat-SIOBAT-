@@ -11,9 +11,6 @@
             <p>Input Data</p>
             <h2>Permintaan</h2>
         </div>
-            <div class="aksi">
-                <span class="material-icons-round">chevron_right</span>
-            </div>
     </div>
     <div class="aksi">
         <span class="material-icons-round">chevron_right</span>

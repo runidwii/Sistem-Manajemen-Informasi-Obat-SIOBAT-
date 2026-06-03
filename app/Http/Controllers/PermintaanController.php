@@ -47,6 +47,13 @@ class PermintaanController extends Controller
             ->with('success', 'Data permintaan berhasil ditambahkan');
     }
 
+    public function show($id)
+    {
+        $permintaan = Permintaan::with('obat')->findOrFail($id);
+
+        return view('permintaan.show', compact('permintaan'));
+    }
+
     public function edit($id)
     {
         $permintaan = Permintaan::findOrFail($id);

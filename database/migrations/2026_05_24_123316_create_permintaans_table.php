@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('permintaans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade');
+            $table->string('kode_permintaan');
             $table->integer('jumlah_permintaan');
             $table->date('tanggal_permintaan');
             $table->integer('stok_awal');
             $table->string('peruntukan_bulan');
+            $table->string('supplier');
             $table->text('keterangan')->nullable();
             $table->enum('status_permintaan', ['Dikirim', 'Diterima', 'Diproses']);
             $table->timestamps();

@@ -52,6 +52,13 @@ class PenerimaanController extends Controller
             ->with('success', 'Data penerimaan berhasil ditambahkan');
     }
 
+    public function show($id)
+    {
+        $penerimaan = Penerimaan::with('permintaan.obat')->findOrFail($id);
+
+        return view('penerimaan.show', compact('penerimaan'));
+    }
+
     public function edit($id)
     {
         $penerimaan = Penerimaan::findOrFail($id);
