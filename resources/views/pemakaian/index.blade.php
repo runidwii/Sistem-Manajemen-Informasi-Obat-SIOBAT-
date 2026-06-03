@@ -1,150 +1,131 @@
 @extends('layouts.app')
-@section('title', 'Persediaan Obat')
+@section('title', 'Data Pemakaian')
 @section('content')
 
 <div class="riwayat-card">
 
-```
-<div class="riwayat-header">
+    <div class="riwayat-header">
 
-    <h2>Status Persediaan Obat</h2>
+        <h2>Data Pemakaian Obat</h2>
 
-    <div class="riwayat-kanan">
+        <div class="riwayat-kanan">
 
-        <div class="search-box">
-            <span class="material-icons-round">search</span>
-            <input type="text" placeholder="Cari nama obat...">
+            <div class="search-box">
+                <span class="material-icons-round">search</span>
+                <input type="text" placeholder="Cari data pemakaian...">
+            </div>
+
+            <a href="{{ route('pemakaian.create') }}" class="btn-tambah">
+
+                <span class="material-icons-round">
+                    add
+                </span>
+
+                Tambah Pemakaian
+
+            </a>
+
         </div>
 
-        <a href="{{ route('statuspersediaan.create') }}" class="btn-tambah">
+    </div>
 
-            <span class="material-icons-round">
-                add
-            </span>
+    <div class="table-wrapper">
 
-            Tambah Persediaan
+        <table>
 
-        </a>
+            <thead>
+
+                <tr>
+                    <th>No</th>
+                    <th>Kode Resep</th>
+                    <th>Nama Obat</th>
+                    <th>Jumlah Pemakaian</th>
+                    <th>Tanggal Pemakaian</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @forelse($pemakaian as $item)
+
+                <tr>
+
+                    <td>{{ $loop->iteration }}</td>
+
+                    <td>{{ $item->id_resep }}</td>
+
+                    {{-- DIUBAH --}}
+                    <td>{{ $item->obat->nama_obat ?? '-' }}</td>
+
+                    <td>
+                        <span class="badge biru">
+                            {{ $item->jumlah_pemakaian }}
+                        </span>
+                    </td>
+
+                    <td>{{ $item->tanggal_pemakaian }}</td>
+
+                    <td>
+
+                        <div class="aksi-table">
+                            {{-- View --}}
+                            <a href="{{ route('pemakaian.show', $item->id) }}" class="btn-view">
+                                <span class="material-icons-round">
+                                    visibility
+                                </span>
+                            </a>
+                        {{-- Edit --}}
+                        
+                        <a href="{{ route('pemakaian.edit', $item->id) }}" class="btn-edit">
+                            <span class="material-icons-round">
+                                edit
+                            </span>
+                        </a>
+                        
+                        {{-- Delete --}}
+                        
+                        <form action="{{ route('pemakaian.destroy', $item->id) }}"
+                        method="POST"
+                        class="delete-form"
+                        style="display:inline-block;">
+                        @csrf
+                        
+                        @method('DELETE')
+                        
+                        <button type="submit" class="btn-hapus">
+                            <span class="material-icons-round">
+                                delete
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                    </td>
+
+                </tr>
+
+                @empty
+
+                <tr>
+
+                    <td colspan="6">
+                        Data pemakaian belum tersedia
+                    </td>
+
+                </tr>
+
+                @endforelse
+
+            </tbody>
+
+        </table>
 
     </div>
 
 </div>
 
-<div class="table-wrapper">
-
-    <table>
-
-        <thead>
-
-            <tr>
-                <th>No</th>
-                <th>Nama Obat</th>
-                <th>Stok Terkini</th>
-                <th>Minimal Stok</th>
-                <th>Status Persediaan</th>
-                <th>Aksi</th>
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            @forelse($persediaan as $item)
-
-            <tr>
-
-                <td>{{ $loop->iteration }}</td>
-
-                <td>{{ $item->obat->nama_obat ?? '-' }}</td>
-
-                <td>{{ $item->stok_terkini }}</td>
-
-                <td>{{ $item->minimal_stok }}</td>
-
-                <td>
-
-                    @if($item->status_persediaan == 'Memadai')
-
-                        <span class="badge hijau">
-                            Memadai
-                        </span>
-
-                    @elseif($item->status_persediaan == 'Sedikit')
-
-                        <span class="badge biru">
-                            Sedikit
-                        </span>
-
-                    @else
-
-                        <span class="badge ungu">
-                            Darurat
-                        </span>
-
-                    @endif
-
-                </td>
-
-                <td>
-
-                    <div class="aksi-table">
-
-                        <a href="{{ route('statuspersediaan.show', $item->id) }}" class="btn-view">
-                            <span class="material-icons-round">
-                                visibility
-                            </span>
-                        </a>
-
-                        <a href="{{ route('statuspersediaan.edit', $item->id) }}" class="btn-edit">
-                            <span class="material-icons-round">
-                                edit
-                            </span>
-                        </a>
-
-                        <form action="{{ route('statuspersediaan.destroy', $item->id) }}"
-                              method="POST"
-                              class="delete-form"
-                              style="display:inline-block;">
-
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="btn-hapus">
-
-                                <span class="material-icons-round">
-                                    delete
-                                </span>
-
-                            </button>
-
-                        </form>
-
-                    </div>
-
-                </td>
-
-            </tr>
-
-            @empty
-
-            <tr>
-
-                <td colspan="6">
-                    Data persediaan belum tersedia
-                </td>
-
-            </tr>
-
-            @endforelse
-
-        </tbody>
-
-    </table>
-
-</div>
-```
-
-</div>
 
 <script>
 
@@ -181,8 +162,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
-@if(session('success'))
 
+@if(session('success'))
 <script>
 Swal.fire({
     icon: 'success',
@@ -192,7 +173,6 @@ Swal.fire({
     showConfirmButton: false
 });
 </script>
-
 @endif
 
 @endsection
