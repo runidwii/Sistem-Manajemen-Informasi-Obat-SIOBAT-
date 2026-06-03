@@ -30,7 +30,7 @@
     </a>
 
     <!-- PEMANTAUAN PERMINTAAN -->
-    <a href="{{ route('permintaan.index') }}" class="input-card green">
+    <a href="{{ route('pemantauanpermintaan.index') }}" class="input-card green">
 
         <div class="input-kiri">
 

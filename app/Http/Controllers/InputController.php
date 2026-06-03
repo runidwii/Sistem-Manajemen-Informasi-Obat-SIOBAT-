@@ -27,7 +27,10 @@ class InputController extends Controller
                 'jenis' => 'Permintaan',
                 'jumlah' => $item->jumlah_permintaan,
                 'tanggal' => $item->tanggal_permintaan,
-                'pemasok' => $item->keterangan
+                'pemasok' => $item->supplier,
+                 'url' => route('permintaan.show', $item->id),
+                 'edit_url' => route('permintaan.edit', $item->id),
+                 'delete_url' => route('permintaan.destroy', $item->id),
             ];
         });
 
@@ -40,9 +43,9 @@ class InputController extends Controller
                 'jumlah' => $item->jumlah_diterima,
                 'tanggal' => $item->tanggal_diterima,
                 'pemasok' => $item->pemasok,
-                'jumlah' => $item->jumlah_penerimaan,
-                'tanggal' => $item->tanggal_penerimaan,
-                'keterangan' => $item->keterangan
+                'url' => route('penerimaan.show', $item->id),
+                'edit_url' => route('penerimaan.edit', $item->id),
+                'delete_url' => route('penerimaan.destroy', $item->id)
             ];
         });
 

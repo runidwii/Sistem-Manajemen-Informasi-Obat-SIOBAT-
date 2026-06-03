@@ -26,6 +26,11 @@
     gap:10px;
 }
 
+.tiga{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
 .form-group label{
     font-size:14px;
     font-weight:600;

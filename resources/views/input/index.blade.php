@@ -2,21 +2,20 @@
 @section('title', 'Input Data')
 @section('content')
 <div class="input-grid">
-    <div class="input-card blue">
-        <div class="input-kiri">
-            <div class="icon-input">
-                <span class="material-icons-round">assignment</span>
-            </div>
-
-            <div class="info-input">
-                <p>Input Data</p>
-                <h2>Permintaan</h2>
-            </div>
+    <a href="{{ route('permintaan.create') }}" class="input-card blue">
+    <div class="input-kiri">
+        <div class="icon-input">
+            <span class="material-icons-round">assignment</span>
         </div>
-            <div class="aksi">
-                <span class="material-icons-round">chevron_right</span>
-            </div>
+        <div class="info-input">
+            <p>Input Data</p>
+            <h2>Permintaan</h2>
+        </div>
     </div>
+    <div class="aksi">
+        <span class="material-icons-round">chevron_right</span>
+    </div>
+</a>
 
     <a href="{{ route('penerimaan.create') }}" class="input-card green">
         <div class="input-kiri">
@@ -29,11 +28,11 @@
                 <h2>Penerimaan</h2>
             </div>
         </div>
+
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
     </a>
-    </div>
 
     <a href="{{ route('relokasi.create') }}" class="input-card purple">
         <div class="input-kiri">
@@ -46,13 +45,14 @@
                 <h2>Relokasi Obat</h2>
             </div>
         </div>
+
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
     </a>
 </div>
 
-<div class="preview-grid">
+<div class="show-grid">
     <div class="preview-card">
         <div class="preview-info">
             <h4>Total Permintaan</h4>

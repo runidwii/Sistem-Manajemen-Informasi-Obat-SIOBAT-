@@ -22,10 +22,7 @@ class DashboardController extends Controller
             'minimal_stok'
         )->count();
 
-        $permintaan = Permintaan::where(
-            'status_permintaan',
-            'Diproses'
-        )->count();
+        $permintaan = Permintaan::count();
 
         $kadaluarsa = Penerimaan::whereDate(
             'tanggal_kadaluarsa',

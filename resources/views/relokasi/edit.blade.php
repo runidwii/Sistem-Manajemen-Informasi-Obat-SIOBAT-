@@ -111,7 +111,7 @@
             </a>
 
             <button type="submit" class="btn-simpan">
-                Update Data
+                Simpan Data
             </button>
 
         </div>

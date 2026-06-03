@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Input Data')
+@section('title', 'Edit Penerimaan')
 
 @section('content')
 
 <div class="form-card">
 
     <div class="form-header">
-        <h2>Input Data Penerimaan Obat</h2>
+        <h2>Edit Data Penerimaan Obat</h2>
     </div>
 
-    <form action="{{ route('penerimaan.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('penerimaan.update',$penerimaan->id) }}"
+        method="POST">
 
         @csrf
+        @method('PUT')
 
         <div class="form-grid">
 
@@ -20,22 +22,23 @@
                 <label>Kode Penerimaan</label>
                 <input type="text"
                     name="kode_penerimaan"
-                    placeholder="TRX001">
+                    value="{{ old('kode_penerimaan',$penerimaan->kode_penerimaan) }}">
             </div>
 
             <div class="form-group">
                 <label>Nama Obat</label>
 
                 <div class="select-wrapper">
-                    <select name="permintaan_id" required>
-                        <option value="">Pilih Permintaan</option>
+                    <select name="permintaan_id">
 
                         @foreach($permintaan as $item)
-                            <option value="{{ $item->id }}">
+                            <option value="{{ $item->id }}"
+                                {{ $penerimaan->permintaan_id == $item->id ? 'selected' : '' }}>
                                 {{ $item->obat->nama_obat }}
                                 - {{ $item->jumlah_permintaan }}
                             </option>
                         @endforeach
+
                     </select>
 
                     <span class="material-icons-round select-icon">
@@ -48,71 +51,80 @@
                 <label>Dosis Obat</label>
                 <input type="text"
                     name="dosis"
-                    placeholder="Contoh: 500 mg">
+                    value="{{ old('dosis',$penerimaan->dosis_obat) }}">
             </div>
 
             <div class="form-group">
                 <label>Stok Awal Obat</label>
                 <input type="number"
                     name="stok_awal"
-                    placeholder="20.000">
+                    value="{{ old('stok_awal',$penerimaan->stok_awal) }}">
             </div>
 
             <div class="form-group">
                 <label>Jumlah Obat Diterima</label>
                 <input type="number"
                     name="jumlah_diterima"
-                    placeholder="20.000">
+                    value="{{ old('jumlah_diterima',$penerimaan->jumlah_diterima) }}">
             </div>
 
             <div class="form-group">
                 <label>Peruntukan Bulan</label>
                 <input type="month"
-                    name="peruntukan_bulan">
+                    name="peruntukan_bulan"
+                    value="{{ old('peruntukan_bulan',$penerimaan->peruntukan_bulan) }}">
             </div>
 
             <div class="tiga">
+
                 <div class="form-group">
                     <label>Tanggal Kadaluarsa</label>
                     <input type="date"
-                        name="tanggal_kadaluarsa">
+                        name="tanggal_kadaluarsa"
+                        value="{{ old('tanggal_kadaluarsa',$penerimaan->tanggal_kadaluarsa) }}">
                 </div>
 
                 <div class="form-group">
                     <label>Tanggal Penerimaan</label>
                     <input type="date"
-                        name="tanggal_diterima">
+                        name="tanggal_diterima"
+                        value="{{ old('tanggal_diterima',$penerimaan->tanggal_diterima) }}">
                 </div>
 
                 <div class="form-group">
                     <label>Pemasok</label>
                     <input type="text"
                         name="pemasok"
-                        placeholder="Contoh: Dinas Kesehatan">
+                        value="{{ old('pemasok',$penerimaan->pemasok) }}">
                 </div>
+
             </div>
 
             <div class="form-group full">
                 <label>Catatan</label>
 
                 <textarea name="catatan"
-                    rows="4"
-                    placeholder="Masukkan catatan"></textarea>
+                    rows="4">{{ old('catatan',$penerimaan->catatan) }}</textarea>
             </div>
+
         </div>
 
         <div class="form-action">
-            <a href="/input" class="btn-batal">
+
+            <a href="{{ route('input.index') }}"
+                class="btn-batal">
                 Batal
             </a>
 
-            <button type="submit" class="btn-simpan">
+            <button type="submit"
+                class="btn-simpan">
                 Simpan Data
             </button>
+
         </div>
+
     </form>
+
 </div>
-
-
 
 @endsection
