@@ -81,7 +81,7 @@ class LaporanExport implements FromCollection, WithHeadings
                 ->when($this->tahun, function ($q) {
                     $q->whereYear('tanggal_dibuang', $this->tahun);
                 })
-                ->sum('jumlah_sampah');
+                ->sum('jumlah_obat');
 
             $sisa_stok = $persediaan - $pemakaian - $ed_rusak;
 
