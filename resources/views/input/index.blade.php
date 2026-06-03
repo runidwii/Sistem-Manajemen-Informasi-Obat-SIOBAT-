@@ -13,6 +13,7 @@
                 <h2>Permintaan</h2>
             </div>
         </div>
+
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
@@ -29,11 +30,11 @@
                 <h2>Penerimaan</h2>
             </div>
         </div>
+
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
     </a>
-    </div>
 
     <a href="{{ route('relokasi.create') }}" class="input-card purple">
         <div class="input-kiri">
@@ -46,13 +47,14 @@
                 <h2>Relokasi Obat</h2>
             </div>
         </div>
+
             <div class="aksi">
                 <span class="material-icons-round">chevron_right</span>
             </div>
     </a>
 </div>
 
-<div class="preview-grid">
+<div class="show-grid">
     <div class="preview-card">
         <div class="preview-info">
             <h4>Total Permintaan</h4>
