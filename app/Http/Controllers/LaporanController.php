@@ -42,10 +42,10 @@ class LaporanController extends Controller
                     $q->where('obat_id', $obat->id);
                 })
                 ->when($laporanbulan, function ($q) use ($laporanbulan) {
-                    $q->whereMonth('tanggal_penerimaan', $laporanbulan);
+                    $q->whereMonth('tanggal_diterima', $laporanbulan);
                 })
                 ->when($tahun, function ($q) use ($tahun) {
-                    $q->whereYear('tanggal_penerimaan', $tahun);
+                    $q->whereYear('tanggal_diterima', $tahun);
                 })
                 ->sum('jumlah_diterima');
             $pemberian_lain = Relokasi::where('obat_id', $obat->id)
@@ -67,10 +67,10 @@ class LaporanController extends Controller
                 ->sum('jumlah_pemakaian');
             $ed_rusak = ObatSampah::where('obat_id', $obat->id)
                 ->when($laporanbulan, function ($q) use ($laporanbulan) {
-                    $q->whereMonth('tanggal_dibuang', $laporanbulan);
+                    $q->whereMonth('tanggal', $laporanbulan);
                 })
                 ->when($tahun, function ($q) use ($tahun) {
-                    $q->whereYear('tanggal_dibuang', $tahun);
+                    $q->whereYear('tanggal', $tahun);
                 })
                 ->sum('jumlah_obat');
             $sisa_stok = $persediaan - $pemakaian - $ed_rusak;
