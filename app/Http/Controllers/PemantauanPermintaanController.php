@@ -21,14 +21,11 @@ class PemantauanPermintaanController extends Controller
         // with('obat')       → nama obat dari tabel obats
         // with('penerimaan') → data penerimaan dari tabel penerimaans
         $permintaan = Permintaan::with(['obat', 'penerimaan'])
-            ->filterTanggal($tanggalMulai, $tanggalAkhir)
+            ->whereBetween('tanggal_permintaan', [$tanggalMulai, $tanggalAkhir]) // <-- GANTI BARIS INI
             ->orderBy('tanggal_permintaan', 'asc')
             ->get()
             ->map(function ($item) {
 
-                // ── Estimasi tiba ────────────────────────────────────────
-                // Jika sudah ada penerimaan → pakai tanggal_penerimaan
-                // Jika belum → estimasi tanggal_permintaan + 2 hari
                 $estimasiTiba = $item->penerimaan
                     ? $item->penerimaan->tanggal_penerimaan->format('d-m-Y')
                     : $item->tanggal_permintaan->copy()->addDays(2)->format('d-m-Y');
