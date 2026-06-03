@@ -72,7 +72,7 @@ class LaporanController extends Controller
                 ->when($tahun, function ($q) use ($tahun) {
                     $q->whereYear('tanggal_dibuang', $tahun);
                 })
-                ->sum('jumlah_sampah');
+                ->sum('jumlah_obat');
             $sisa_stok = $persediaan - $pemakaian - $ed_rusak;
             $permintaan = Permintaan::where('obat_id', $obat->id)
                 ->when($permintaanbulan, function ($q) use ($permintaanbulan) {
