@@ -12,6 +12,6 @@ class PersediaanObatController extends Controller
      */
     public function index()
     {
-        return view('persediaanobat.index');
+        return view('statuspersediaanobat.index');
     }
 }

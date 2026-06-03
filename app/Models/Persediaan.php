@@ -8,6 +8,7 @@ class Persediaan extends Model
 {
     protected $fillable = [
         'obat_id',
+        'nama_obat',
         'stok_terkini',
         'minimal_stok',
         'tanggal_kadaluarsa',

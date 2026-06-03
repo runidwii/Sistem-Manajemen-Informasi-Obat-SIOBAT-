@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('persediaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_penerimaan')->constrained('penerimaans')->onDelete('cascade');
+            $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade');
+            $table->string('nama_obat');
             $table->integer('stok_terkini');
             $table->integer('minimal_stok');
             $table->enum('status_persediaan', ['Memadai', 'Sedikit', 'Darurat']);

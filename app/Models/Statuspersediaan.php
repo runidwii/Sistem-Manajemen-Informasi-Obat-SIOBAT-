@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Persediaan extends Model
+class Statuspersediaan extends Model
 {
     protected $fillable = [
-        'id_penerimaan',
+        'obat_id',
+        'nama_obat',
         'stok_terkini',
         'minimal_stok',
         'status_persediaan'
     ];
 
-    public function penerimaan()
+    public function obat()
     {
-        return $this->belongsTo(Penerimaan::class, 'id_penerimaan');
+        return $this->belongsTo(Obat::class, 'obat_id');
     }
 }

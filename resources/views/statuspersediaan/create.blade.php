@@ -14,7 +14,7 @@
         <div class="form-grid">
 
             <div class="form-group">
-                <label>Penerimaan</label>
+                <label>Nama Obat</label>
 
                 <div class="select-wrapper">
                     <select name="obat_id" required>

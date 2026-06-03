@@ -15,7 +15,7 @@
                 <input type="text" placeholder="Cari nama obat...">
             </div>
 
-        <a href="{{ route('persediaan.create') }}" class="btn-tambah">
+        <a href="{{ route('statuspersediaan.create') }}" class="btn-tambah">
 
         <span class="material-icons-round">
             add
@@ -36,12 +36,11 @@
             <thead>
 
                 <tr>
+                    <th>No</th>
                     <th>Nama Obat</th>
-                    <th>Kode Obat</th>
-                    <th>Stok</th>
+                    <th>Stok Terkini</th>
                     <th>Minimal Stok</th>
-                    <th>Status</th>
-                    <th>Tanggal</th>
+                    <th>Status Persediaan</th>
                     <th>Aksi</th>
                 </tr>
 
@@ -52,40 +51,26 @@
                 @forelse($persediaan as $item)
 
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
+
+                  <td>
+    {{ $item->obat->nama_obat ?? '-' }}
+</td>
+
+
+                    <td>{{ $item->stok_terkini }}</td>
+
+                    <td>{{ $item->minimal_stok }}</td>
 
                     <td>
 
-                        <div style="text-align:left">
-
-                            <strong>
-                                {{ $item->nama_obat }}
-                            </strong>
-
-                            <br>
-
-                            <small style="color:#64748b">
-                                {{ $item->deskripsi }}
-                            </small>
-
-                        </div>
-
-                    </td>
-
-                    <td>{{ $item->kode_obat }}</td>
-
-                    <td>{{ $item->stok }}</td>
-
-                    <td>{{ $item->stok_minimal }}</td>
-
-                    <td>
-
-                        @if($item->status == 'Memadai')
+                        @if($item->status_persediaan == 'Memadai')
 
                             <span class="badge hijau">
                                 Memadai
                             </span>
 
-                        @elseif($item->status == 'Sedikit')
+                        @elseif($item->status_persediaan == 'Sedikit')
 
                             <span class="badge biru">
                                 Sedikit
@@ -101,7 +86,6 @@
 
                     </td>
 
-                    <td>{{ $item->tanggal }}</td>
 
                     <td>
 

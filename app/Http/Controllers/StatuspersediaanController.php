@@ -34,7 +34,10 @@ class StatuspersediaanController extends Controller
             'status_persediaan' => 'required',
         ]);
 
+        $obat = Obat::findOrFail($request->obat_id);
+
         Persediaan::create([
+            'nama_obat' => $obat->nama_obat,
             'obat_id' => $request->obat_id,
             'stok_terkini' => $request->stok_terkini,
             'minimal_stok' => $request->minimal_stok,
@@ -66,6 +69,7 @@ class StatuspersediaanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nama_obat' => $obat->nama_obat,
             'obat_id' => 'required',
             'stok_terkini' => 'required|integer',
             'minimal_stok' => 'required|integer',
@@ -75,6 +79,7 @@ class StatuspersediaanController extends Controller
         $persediaan = Persediaan::findOrFail($id);
 
         $persediaan->update([
+             'nama_obat' => $obat->nama_obat,
             'obat_id' => $request->obat_id,
             'stok_terkini' => $request->stok_terkini,
             'minimal_stok' => $request->minimal_stok,
