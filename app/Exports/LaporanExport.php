@@ -47,10 +47,10 @@ class LaporanExport implements FromCollection, WithHeadings
                     $q->where('obat_id', $obat->id);
                 })
                 ->when($this->laporanbulan, function ($q) {
-                    $q->whereMonth('tanggal_penerimaan', $this->laporanbulan);
+                    $q->whereMonth('tanggal_diterima', $this->laporanbulan);
                 })
                 ->when($this->tahun, function ($q) {
-                    $q->whereYear('tanggal_penerimaan', $this->tahun);
+                    $q->whereYear('tanggal_diterima', $this->tahun);
                 })
                 ->sum('jumlah_diterima');
 
@@ -76,10 +76,10 @@ class LaporanExport implements FromCollection, WithHeadings
 
             $ed_rusak = ObatSampah::where('obat_id', $obat->id)
                 ->when($this->laporanbulan, function ($q) {
-                    $q->whereMonth('tanggal_dibuang', $this->laporanbulan);
+                    $q->whereMonth('tanggal', $this->laporanbulan);
                 })
                 ->when($this->tahun, function ($q) {
-                    $q->whereYear('tanggal_dibuang', $this->tahun);
+                    $q->whereYear('tanggal', $this->tahun);
                 })
                 ->sum('jumlah_obat');
 
