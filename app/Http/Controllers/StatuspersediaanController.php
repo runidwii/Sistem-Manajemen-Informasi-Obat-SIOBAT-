@@ -44,8 +44,8 @@ class StatuspersediaanController extends Controller
             'status_persediaan' => $request->status_persediaan,
         ]);
 
-        return redirect()->route('persediaan.index')
-            ->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('statuspersediaan.index')
+        ->with('success', 'Data Persediaan Berhasil Ditambahkan!');
     }
 
     // 👁 OPTIONAL: DETAIL DATA
@@ -67,28 +67,29 @@ class StatuspersediaanController extends Controller
 
     // 🔄 UPDATE DATA
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama_obat' => $obat->nama_obat,
-            'obat_id' => 'required',
-            'stok_terkini' => 'required|integer',
-            'minimal_stok' => 'required|integer',
-            'status_persediaan' => 'required',
-        ]);
+{
+    $request->validate([
+        'obat_id' => 'required',
+        'stok_terkini' => 'required|integer',
+        'minimal_stok' => 'required|integer',
+        'status_persediaan' => 'required',
+    ]);
 
-        $persediaan = Persediaan::findOrFail($id);
+    $persediaan = Persediaan::findOrFail($id);
 
-        $persediaan->update([
-             'nama_obat' => $obat->nama_obat,
-            'obat_id' => $request->obat_id,
-            'stok_terkini' => $request->stok_terkini,
-            'minimal_stok' => $request->minimal_stok,
-            'status_persediaan' => $request->status_persediaan,
-        ]);
+    $obat = Obat::findOrFail($request->obat_id);
 
-        return redirect()->route('persediaan.index')
-            ->with('success', 'Data berhasil diupdate');
-    }
+    $persediaan->update([
+        'nama_obat' => $obat->nama_obat,
+        'obat_id' => $request->obat_id,
+        'stok_terkini' => $request->stok_terkini,
+        'minimal_stok' => $request->minimal_stok,
+        'status_persediaan' => $request->status_persediaan,
+    ]);
+
+    return redirect()->route('statuspersediaan.index')
+        ->with('success', 'Data berhasil diupdate');
+}
 
     // 🗑 HAPUS DATA
     public function destroy($id)

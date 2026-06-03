@@ -77,11 +77,11 @@
                                 </span>
                             </button>
 
-                            <button class="btn-edit">
+                            <a href="{{ route('pemakaian.edit', $item->id) }}" class="btn-edit">
                                 <span class="material-icons-round">
                                     edit
                                 </span>
-                            </button>
+                            </a>
 
                             <button class="btn-hapus">
                                 <span class="material-icons-round">
@@ -114,5 +114,17 @@
     </div>
 
 </div>
+
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ session('success') }}',
+    timer: 3000,
+    showConfirmButton: false
+});
+</script>
+@endif
 
 @endsection

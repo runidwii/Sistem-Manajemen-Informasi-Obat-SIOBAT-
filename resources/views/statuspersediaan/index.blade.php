@@ -15,16 +15,16 @@
                 <input type="text" placeholder="Cari nama obat...">
             </div>
 
-        <a href="{{ route('statuspersediaan.create') }}" class="btn-tambah">
+            <a href="{{ route('statuspersediaan.create') }}" class="btn-tambah">
 
-        <span class="material-icons-round">
-            add
-        </span>
+                <span class="material-icons-round">
+                    add
+                </span>
 
-        Tambah Persediaan
+                Tambah Persediaan
 
-    </a>
-            
+            </a>
+
         </div>
 
     </div>
@@ -51,12 +51,10 @@
                 @forelse($persediaan as $item)
 
                 <tr>
+
                     <td>{{ $loop->iteration }}</td>
 
-                  <td>
-    {{ $item->obat->nama_obat ?? '-' }}
-</td>
-
+                    <td>{{ $item->obat->nama_obat ?? '-' }}</td>
 
                     <td>{{ $item->stok_terkini }}</td>
 
@@ -86,18 +84,46 @@
 
                     </td>
 
-
                     <td>
 
                         <div class="aksi-table">
 
-                            <button class="btn-view">
+                            {{-- View --}}
+                            <a href="{{ route('statuspersediaan.show', $item->id) }}" class="btn-view">
 
                                 <span class="material-icons-round">
-                                    send
+                                    visibility
                                 </span>
 
-                            </button>
+                            </a>
+
+                            {{-- Edit --}}
+                            <a href="{{ route('statuspersediaan.edit', $item->id) }}" class="btn-edit">
+
+                                <span class="material-icons-round">
+                                    edit
+                                </span>
+
+                            </a>
+
+                            {{-- Delete --}}
+                            <form action="{{ route('statuspersediaan.destroy', $item->id) }}"
+                                  method="POST"
+                                  class="delete-form"
+                                  style="display:inline-block;">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn-hapus">
+
+                                    <span class="material-icons-round">
+                                        delete
+                                    </span>
+
+                                </button>
+
+                            </form>
 
                         </div>
 
@@ -109,7 +135,7 @@
 
                 <tr>
 
-                    <td colspan="7">
+                    <td colspan="6">
                         Data persediaan belum tersedia
                     </td>
 
@@ -124,5 +150,49 @@
     </div>
 
 </div>
+
+<script>
+
+document.querySelectorAll('.delete-form').forEach(form => {
+
+    form.addEventListener('submit', function(e) {
+
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Data yang dihapus tidak dapat dikembalikan!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                form.submit();
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ session('success') }}',
+    timer: 3000,
+    showConfirmButton: false
+});
+</script>
+
+@endif
 
 @endsection

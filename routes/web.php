@@ -64,6 +64,15 @@ Route::get('/status-persediaan/create', [StatuspersediaanController::class, 'cre
     
 Route::post('/status-persediaan', [StatuspersediaanController::class, 'store'])
     ->name('statuspersediaan.store');
+Route::get('/status-persediaan/{id}', [StatuspersediaanController::class, 'show'])
+    ->name('statuspersediaan.show');
+Route::get('/status-persediaan/{id}/edit', [StatuspersediaanController::class, 'edit'])
+    ->name('statuspersediaan.edit');
+Route::put('/status-persediaan/{id}', [StatuspersediaanController::class, 'update'])
+    ->name('statuspersediaan.update');
+Route::delete('/status-persediaan/{id}', [StatuspersediaanController::class, 'destroy'])
+    ->name('statuspersediaan.destroy');
+
 Route::get('/laporan', [LaporanController::class, 'index'])
     ->name('laporan.index');
 Route::get('/laporan/excel', [LaporanController::class, 'exportExcel'])
