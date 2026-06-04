@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
         $permintaanTerbaru = Permintaan::with('obat')
         ->latest()
-        ->take(5)
+        ->take(4)
         ->get();
 
         return view('dashboard.index', compact(
