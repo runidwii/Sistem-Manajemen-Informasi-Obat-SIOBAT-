@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class StatuspersediaanController extends Controller
 {
-    // 📄 TAMPILKAN DATA (TABEL STATUS PERSEDIAAN)
     public function index()
     {
         $persediaan = Persediaan::with('obat')->get();
@@ -16,7 +15,6 @@ class StatuspersediaanController extends Controller
         return view('statuspersediaan.index', compact('persediaan'));
     }
 
-    // ➕ FORM TAMBAH DATA
     public function create()
     {
         $obat = Obat::all();
@@ -24,7 +22,6 @@ class StatuspersediaanController extends Controller
         return view('statuspersediaan.create', compact('obat'));
     }
 
-    // 💾 SIMPAN DATA
     public function store(Request $request)
     {
         $request->validate([
@@ -48,7 +45,6 @@ class StatuspersediaanController extends Controller
         ->with('success', 'Data Persediaan Berhasil Ditambahkan!');
     }
 
-    // 👁 OPTIONAL: DETAIL DATA
     public function show($id)
     {
         $persediaan = Persediaan::with('obat')->findOrFail($id);
@@ -56,7 +52,6 @@ class StatuspersediaanController extends Controller
         return view('statuspersediaan.show', compact('persediaan'));
     }
 
-    // ✏ OPTIONAL: EDIT
     public function edit($id)
     {
         $persediaan = Persediaan::findOrFail($id);
@@ -65,7 +60,6 @@ class StatuspersediaanController extends Controller
         return view('statuspersediaan.edit', compact('persediaan', 'obat'));
     }
 
-    // 🔄 UPDATE DATA
     public function update(Request $request, $id)
 {
     $request->validate([
@@ -91,7 +85,6 @@ class StatuspersediaanController extends Controller
         ->with('success', 'Data berhasil diupdate');
 }
 
-    // 🗑 HAPUS DATA
     public function destroy($id)
     {
         $persediaan = Persediaan::findOrFail($id);

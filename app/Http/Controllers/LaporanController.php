@@ -7,7 +7,7 @@ use App\Models\Permintaan;
 use App\Models\Penerimaan;
 use App\Models\Pemakaian;
 use App\Models\Relokasi;
-use App\Models\ObatSampah;
+use App\Models\Obatsampah;
 use App\Models\Persediaan;
 use Illuminate\Http\Request;
 
@@ -65,7 +65,7 @@ class LaporanController extends Controller
                     $q->whereYear('tanggal_pemakaian', $tahun);
                 })
                 ->sum('jumlah_pemakaian');
-            $ed_rusak = ObatSampah::where('obat_id', $obat->id)
+            $ed_rusak = Obatsampah::where('obat_id', $obat->id)
                 ->when($laporanbulan, function ($q) use ($laporanbulan) {
                     $q->whereMonth('tanggal', $laporanbulan);
                 })
